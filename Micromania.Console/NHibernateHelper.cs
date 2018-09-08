@@ -39,5 +39,6 @@ namespace Micromania.Console
         {
             return Factory.OpenSession();
         }
+
     }
 }

@@ -8,9 +8,9 @@ namespace Micromania.Console
 {
     public class Game : Entity
     {
-        public virtual string Title { get; set; }
-        public virtual decimal Price { get; set; }
-        public virtual Points Points { get; set; }
+        public virtual string Title { get; protected set; }
+        public virtual decimal Price { get; protected set; }
+        public virtual Points Points { get; protected set; }
 
         public Game(Points points)
         {

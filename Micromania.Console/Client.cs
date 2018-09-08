@@ -27,17 +27,23 @@ namespace Micromania.Console
         public static Client Create(string firstName, string lastName, Card card)
         {
             return new Client(firstName, lastName, card);
-        }                
+        }
 
         public void BuyGame(Game game)
         {
             //Buying a game increases the number of points on your card
-            Card.Points += game.Points;  
+            Card.AddGamePoints(game);
         }
 
-        public void BuyGameWithPoints()
+        public void BuyGameWithPoints(Game game)
         {
-
+            // not that easy 
+            // convert points in money 
+            // subtract it from the game's price
+            // 2000 points = 10€ 
+            // 
+            //game.Price = -10;
+            Card.UseCardPoints();
         }
     }
 }

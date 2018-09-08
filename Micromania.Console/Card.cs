@@ -6,8 +6,7 @@ namespace Micromania.Console
     public class Card : Entity
     {       
         public virtual CardType CardType { get; protected set; }
-        public virtual Points Points { get; set; } 
-        //public virtual Client Client { get; protected set; }
+        public virtual Points Points { get; protected set; } 
 
         private Card()
         {            
@@ -22,14 +21,23 @@ namespace Micromania.Console
         public static Card Create(CardType cardType, Points points)
         {
             return new Card(cardType, points);
+        }        
+        
+        public void UseCardPoints()
+        {
+            Points.UsePoints();
+        }
+
+        public void AddGamePoints(Game game)
+        {
+            Points += game.Points;
         }
     }
 
     public enum CardType
     {
-        Classic,        
-        Premium,
-        Gold,
-        Platinium
+        Classic,
+        Star,
+        Premium       
     }
 }

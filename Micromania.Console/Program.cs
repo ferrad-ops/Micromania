@@ -11,7 +11,7 @@ namespace Micromania.Console
     {
         static void Main(string[] args)
         {
-            var client = Client.Create("Ferrad", "Rosé", Card.Create(CardType.Classic ,new Points()));
+            var client = Client.Create("Ferrad", "Rosé", Card.Create(CardType.Classic, new Points()));
 
             var game = new Game(new Points(10));
             var game1 = new Game(new Points(15));
