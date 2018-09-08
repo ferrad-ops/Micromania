@@ -30,8 +30,8 @@ namespace Micromania.Console
 
         public void AddGamePoints(Game game)
         {
-            Points += game.Points;
-        }
+            Points += game.Points;            
+        }        
     }
 
     public enum CardType

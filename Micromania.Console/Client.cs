@@ -33,17 +33,22 @@ namespace Micromania.Console
         {
             //Buying a game increases the number of points on your card
             Card.AddGamePoints(game);
+            if (Card.Points.TotalPoints >= 8000)
+            {
+                OnNewLevelReached(EventArgs.Empty);
+            }
         }
 
         public void BuyGameWithPoints(Game game)
-        {
-            // not that easy 
-            // convert points in money 
-            // subtract it from the game's price
-            // 2000 points = 10€ 
-            // 
-            //game.Price = -10;
+        {           
             Card.UseCardPoints();
         }
+
+        public virtual void OnNewLevelReached(EventArgs e)
+        {
+            NewLevelReached?.Invoke(this, e);
+        }
+
+        public event EventHandler NewLevelReached;
     }
 }

@@ -17,14 +17,18 @@ namespace Micromania.Console
             var game1 = new Game(new Points(15));
             var game2 = new Game(new Points(25));
 
+            client.NewLevelReached += Client_NewLevelReached;
+
             client.BuyGame(game);
             client.BuyGame(game1);
             client.BuyGame(game2);
 
-            //client.Card.Points.Add(4);
-
             System.Console.WriteLine($"{client.FirstName} has {client.Card.Points.TotalPoints} points");
-            
         }
+
+        private static void Client_NewLevelReached(object sender, EventArgs e)
+        {
+            System.Console.WriteLine($"You reached level {CardType.Premium}");
+        }        
     }
 }
