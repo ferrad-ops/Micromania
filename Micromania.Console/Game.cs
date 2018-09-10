@@ -10,11 +10,13 @@ namespace Micromania.Console
     {
         public virtual string Title { get; protected set; }
         public virtual decimal Price { get; protected set; }
-        public virtual Points Points { get; protected set; }
+        public int Points { get; protected set; }
 
-        public Game(Points points)
+        public Game(string title, decimal price)
         {
-            Points = points;
+            Title = title;
+            Price = price;
+            Points = (int)Price * 10;
         }
     }
 }

@@ -6,26 +6,25 @@ namespace Micromania.Console
     public class Card : Entity
     {       
         public virtual CardType CardType { get; protected set; }
-        public virtual Points Points { get; protected set; } 
+        public virtual int Points { get; protected set; } = 0;
 
         private Card()
         {            
         }
 
-        private Card(CardType cardType, Points points) : this()
+        private Card(CardType cardType) : this()
         {
-            CardType = cardType;
-            Points = points;
+            CardType = cardType;            
         }        
 
-        public static Card Create(CardType cardType, Points points)
+        public static Card Create(CardType cardType)
         {
-            return new Card(cardType, points);
+            return new Card(cardType);
         }        
         
         public void UseCardPoints()
         {
-            Points.UsePoints();
+            
         }
 
         public void AddGamePoints(Game game)
