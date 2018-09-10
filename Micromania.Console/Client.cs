@@ -33,6 +33,7 @@ namespace Micromania.Console
         {
             //Buying a game increases the number of points on your card
             Card.AddGamePoints(game);
+
             if (Card.Points >= 8000)
             {
                 OnNewLevelReached(EventArgs.Empty);
@@ -49,6 +50,6 @@ namespace Micromania.Console
             NewLevelReached?.Invoke(this, e);
         }
 
-        public event EventHandler NewLevelReached;
+        public event EventHandler<EventArgs> NewLevelReached;
     }
 }

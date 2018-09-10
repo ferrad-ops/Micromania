@@ -58,7 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients.cs" />
+    <Compile Include="ClientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +68,10 @@
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Micromania.Console\Micromania.Console.csproj">
+      <Project>{C351864A-1F1B-43AF-A266-C7CB4DA88B4D}</Project>
+      <Name>Micromania.Console</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Micromania.Domain\Micromania.Domain.csproj">
       <Project>{555bad4a-54f2-4dfb-9fb5-d3848360b3f8}</Project>
       <Name>Micromania.Domain</Name>

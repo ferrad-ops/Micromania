@@ -23,6 +23,8 @@ namespace Micromania.Console
             client.BuyGame(game1);
             client.BuyGame(game2);
 
+            //client.BuyGameWithPoints(game);
+
             System.Console.WriteLine($"{client.FirstName} has {client.Card.Points} points");
             System.Console.WriteLine($"{game2.Title} has {game2.Points} points");
         }

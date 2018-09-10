@@ -24,7 +24,10 @@ namespace Micromania.Console
         
         public void UseCardPoints()
         {
-            
+            if (Points >= 2000)
+                Points -= 2000;
+            else
+                throw new InvalidOperationException("You need a minimum of 2000 points to use them.");
         }
 
         public void AddGamePoints(Game game)
