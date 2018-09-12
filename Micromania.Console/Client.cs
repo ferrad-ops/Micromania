@@ -12,7 +12,7 @@ namespace Micromania.Console
         public virtual string LastName { get; protected set; }
         public virtual Card Card { get; protected set; }
 
-        private Client()
+        protected Client()
         {
         }
 
@@ -29,7 +29,7 @@ namespace Micromania.Console
             return new Client(firstName, lastName, card);
         }
 
-        public void BuyGame(Game game)
+        public virtual void BuyGame(Game game)
         {
             //Buying a game increases the number of points on your card
             Card.AddGamePoints(game);
@@ -40,7 +40,7 @@ namespace Micromania.Console
             }
         }
 
-        public void BuyGameWithPoints(Game game)
+        public virtual void BuyGameWithPoints(Game game)
         {           
             Card.UseCardPoints();
         }
@@ -50,6 +50,6 @@ namespace Micromania.Console
             NewLevelReached?.Invoke(this, e);
         }
 
-        public event EventHandler<EventArgs> NewLevelReached;
+        public virtual event EventHandler<EventArgs> NewLevelReached;
     }
 }

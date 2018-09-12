@@ -12,6 +12,8 @@ namespace Micromania.Domain.Mappings
         public StoreMap()
         {
             Id(x => x.Id);
+            Map(x => x.Name);
+            HasMany(x => x.Games);
         }
     }
 }

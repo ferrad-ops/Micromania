@@ -14,7 +14,7 @@ namespace Micromania.Domain.Mappings
             Id(x => x.Id);
             Map(x => x.FirstName);
             Map(x => x.LastName);
-            References(x => x.Card);
+            HasOne(x => x.Card);
         }
         
     }

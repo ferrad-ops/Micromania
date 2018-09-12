@@ -12,6 +12,7 @@ namespace Micromania.Console.Mappings
         public StoreMap()
         {
             Id(x => x.Id);
+            Map(x => x.Name);
             HasManyToMany(x => x.Games)
                 .Cascade.All();                           
         }

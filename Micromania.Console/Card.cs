@@ -6,9 +6,9 @@ namespace Micromania.Console
     public class Card : Entity
     {       
         public virtual CardType CardType { get; protected set; }
-        public virtual int Points { get; protected set; } = 0;
+        public virtual int Points { get; protected set; } 
 
-        private Card()
+        protected Card()
         {            
         }
 
@@ -22,7 +22,7 @@ namespace Micromania.Console
             return new Card(cardType);
         }        
         
-        public void UseCardPoints()
+        public virtual void UseCardPoints()
         {
             if (Points >= 2000)
                 Points -= 2000;
@@ -30,7 +30,7 @@ namespace Micromania.Console
                 throw new InvalidOperationException("You need a minimum of 2000 points to use them.");
         }
 
-        public void AddGamePoints(Game game)
+        public virtual void AddGamePoints(Game game)
         {
             Points += game.Points;            
         }        
