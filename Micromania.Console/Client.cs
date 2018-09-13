@@ -11,6 +11,8 @@ namespace Micromania.Console
         public virtual string FirstName { get; protected set; }
         public virtual string LastName { get; protected set; }
         public virtual Card Card { get; protected set; }
+        public virtual int Points { get; protected set; }
+        public virtual CardType CardType { get; protected set; }
 
         protected Client()
         {
@@ -22,6 +24,8 @@ namespace Micromania.Console
             FirstName = firstName;
             LastName = lastName;
             Card = card;
+            CardType = Card.CardType;
+            Points = Card.Points;
         }
 
         public static Client Create(string firstName, string lastName, Card card)

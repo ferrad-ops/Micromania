@@ -15,6 +15,8 @@ namespace Micromania.Console.Mappings
             Map(x => x.FirstName);
             Map(x => x.LastName);
             HasOne(x => x.Card);
+            Map(x => x.CardType);
+            Map(x => x.Points);
         }
     }
 }
