@@ -1,4 +1,7 @@
-﻿namespace Micromania.Console
+﻿using NHibernate.Proxy;
+using System;
+
+namespace Micromania.Console
 {
     public abstract class Entity
     {
@@ -14,7 +17,7 @@
             if (ReferenceEquals(this, other))
                 return true;
 
-            if (GetType() != other.GetType())
+            if (GetRealType() != other.GetRealType())
                 return false;
 
             if (Id == 0 || other.Id == 0)
@@ -41,7 +44,12 @@
 
         public override int GetHashCode()
         {
-            return (GetType().ToString() + Id).GetHashCode();
+            return (GetRealType().ToString() + Id).GetHashCode();
+        }
+        
+        private Type GetRealType()
+        {
+            return NHibernateProxyHelper.GetClassWithoutInitializingProxy(this);
         }
     }
 }

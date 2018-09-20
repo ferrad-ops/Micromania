@@ -21,23 +21,28 @@ namespace Micromania.Console
                     var client3 = Client.Create("Carmel", "Taty", Card.Create(CardType.Classic));
 
                     var game = new Game("Uncharted", 15);
-                    var game1 = new Game("Uncharted 2", 2000);
+                    var game1 = new Game("Uncharted 2", 20);
                     var game2 = new Game("Uncharted 4", 59.99);
 
                     client.NewLevelReached += Client_NewLevelReached;
 
+                    client.BuyGame(game);                    
                     client.BuyGame(game);
-                    client.BuyGame(game1);
-                    client.BuyGame(game2);
+                    client.BuyGame(game);
+                    client.BuyGame(game);
+                    client1.BuyGame(game1);
+                    client2.BuyGame(game2);
+                    client3.BuyGame(game1);
 
                     //client.BuyGameWithPoints(game);
 
-                    System.Console.WriteLine($"{client.FirstName} has {client.Card.Points} points");
-                    System.Console.WriteLine($"{game2.Title} has {game2.Points} points");
+                    //System.Console.WriteLine($"{client.FirstName} has {client.Card.Points} points");
+                    //System.Console.WriteLine($"{game2.Title} has {game2.Points} points");
 
                     session.SaveOrUpdate(client);
                     session.SaveOrUpdate(client1);
                     session.SaveOrUpdate(client2);
+                    session.SaveOrUpdate(client3);
 
                     session.SaveOrUpdate(game);
                     session.SaveOrUpdate(game1);
@@ -47,6 +52,8 @@ namespace Micromania.Console
                 }
             }
         }
+
+        
 
         protected static void Client_NewLevelReached(object sender, EventArgs e)
         {
