@@ -14,6 +14,19 @@ namespace Micromania.Console
         public virtual int Points { get; protected set; }
         public virtual CardType CardType { get; protected set; }
         public virtual IList<Purchase> Purchases { get; protected set; } = new List<Purchase>();
+        private int pointsToDiscount;
+
+        public virtual int PointsToDiscount
+        {
+            get { return pointsToDiscount; }
+
+            set
+            {
+                if (value < 0 || value > 2000)
+                    throw new InvalidOperationException("Invalid value");
+                pointsToDiscount = value;
+            }
+        }
 
         protected Client()
         {
@@ -25,7 +38,7 @@ namespace Micromania.Console
             FirstName = firstName;
             LastName = lastName;
             Card = card;
-            CardType = Card.CardType;              
+            CardType = Card.CardType;
         }
 
         public static Client Create(string firstName, string lastName, Card card)
@@ -41,7 +54,9 @@ namespace Micromania.Console
             Card.AddGamePoints(game);
 
             Points = Card.Points;
-            
+
+            PointsToDiscount = 2000 - Points;
+
             if (Card.Points >= 8000)
             {
                 OnNewLevelReached(EventArgs.Empty);

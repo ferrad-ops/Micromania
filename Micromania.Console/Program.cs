@@ -36,8 +36,8 @@ namespace Micromania.Console
 
                     //client.BuyGameWithPoints(game);
 
-                    //System.Console.WriteLine($"{client.FirstName} has {client.Card.Points} points");
-                    //System.Console.WriteLine($"{game2.Title} has {game2.Points} points");
+                    System.Console.WriteLine($"{client.FirstName} has {client.Card.Points} points");
+                    System.Console.WriteLine($"{game2.Title} has {game2.Points} points");
 
                     session.SaveOrUpdate(client);
                     session.SaveOrUpdate(client1);
@@ -47,7 +47,7 @@ namespace Micromania.Console
                     session.SaveOrUpdate(game);
                     session.SaveOrUpdate(game1);
                     session.SaveOrUpdate(game2);
-                   
+                    
                     transaction.Commit();
                 }
             }
