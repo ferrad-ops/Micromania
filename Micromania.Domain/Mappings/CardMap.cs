@@ -12,7 +12,7 @@ namespace Micromania.Domain.Mappings
         public CardMap()
         {
             Id(x => x.Id);
-            Map(x => x.Points);
+            //HasMany(x => x.Points).Inverse().Cascade.All();
             Map(x => x.CardType);
         }
     }

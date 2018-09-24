@@ -61,21 +61,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aggregates\AggregateRoot.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="ClientDto.cs" />
+    <Compile Include="ClientRepository.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Mappings\CardMap.cs" />
     <Compile Include="Mappings\ClientMap.cs" />
     <Compile Include="Mappings\GameMap.cs" />
+    <Compile Include="Mappings\PurchaseMap.cs" />
     <Compile Include="Mappings\StoreMap.cs" />
+    <Compile Include="Money.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Purchase.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="ValueObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

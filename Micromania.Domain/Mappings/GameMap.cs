@@ -14,7 +14,7 @@ namespace Micromania.Domain.Mappings
             Id(x => x.Id);
             Map(x => x.Points);
             Map(x => x.Price);
-            Map(x => x.Title);
+            Map(x => x.Name);
         }
     }
 }

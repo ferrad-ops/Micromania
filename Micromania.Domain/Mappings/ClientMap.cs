@@ -15,6 +15,10 @@ namespace Micromania.Domain.Mappings
             Map(x => x.FirstName);
             Map(x => x.LastName);
             HasOne(x => x.Card);
+            Map(x => x.CardType);
+            Map(x => x.Points);
+            Map(x => x.PointsToDiscount);
+            HasMany(x => x.Purchases).Cascade.All();
         }
         
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Micromania.Domain.Aggregates;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,35 @@ using System.Threading.Tasks;
 
 namespace Micromania.Domain
 {
-    public class Game : Entity
+    public class Game : AggregateRoot
     {
-        public virtual string Title { get; set; }
-        public virtual decimal Price { get; set; }
-        public virtual int Points { get; set; }
+        public virtual string Name { get; protected set; }
 
-        public Game(int points)
+        private double price;
+
+        public virtual double Price
         {
-            Points = points;
+            get { return price; }
+
+            set
+            {
+                if (value <= 0 || value >= 100)
+                    throw new InvalidOperationException("Invalid price.");
+                price = value;
+            }
+        }
+
+        public virtual int Points { get; protected set; }
+
+        public Game()
+        {
+        }
+
+        public Game(string title, double price)
+        {
+            Title = title;
+            Price = price;
+            Points = (int)Price * 10;
         }
     }
 }

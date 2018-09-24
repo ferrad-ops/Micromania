@@ -5,6 +5,7 @@ using NHibernate.Tool.hbm2ddl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +31,7 @@ namespace Micromania.Console
             _factory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012.ConnectionString("Server=DESKTOP-H9JQ47G;Database= Micromania;Trusted_Connection=True;"))
                 .Mappings(m =>
-                    m.FluentMappings.AddFromAssemblyOf<Program>())
+                    m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
                 .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true))
                 .BuildSessionFactory();
         }
@@ -39,6 +40,5 @@ namespace Micromania.Console
         {
             return Factory.OpenSession();
         }
-
     }
 }
