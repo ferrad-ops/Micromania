@@ -70,6 +70,7 @@
     <Compile Include="Mappings\GameMap.cs" />
     <Compile Include="Mappings\PurchaseMap.cs" />
     <Compile Include="Mappings\StoreMap.cs" />
+    <Compile Include="Money.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,9 +11,9 @@ namespace Micromania.Domain
     {
         public virtual string Name { get; protected set; }
 
-        private double price;
+        private decimal price;
 
-        public virtual double Price
+        public virtual decimal Price
         {
             get { return price; }
 
@@ -31,7 +31,7 @@ namespace Micromania.Domain
         {
         }
 
-        public Game(string title, double price)
+        public Game(string title, decimal price)
         {
             Name = title;
             Price = price;

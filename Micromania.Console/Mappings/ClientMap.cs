@@ -16,6 +16,7 @@ namespace Micromania.Console.Mappings
             Map(x => x.LastName);
             Map(x => x.Status);
             Map(x => x.Points);
+            Map(x => x.MoneyInWallet);
             Map(x => x.PointsToDiscount);
             HasMany(x => x.Purchases).Cascade.All();
         }

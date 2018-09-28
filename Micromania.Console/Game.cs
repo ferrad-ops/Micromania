@@ -10,9 +10,9 @@ namespace Micromania.Console
     {
         public virtual string Title { get; protected set; }
 
-        private double price;
+        private decimal price;
 
-        public virtual double Price
+        public virtual decimal Price
         {
             get { return price; }
 
@@ -30,7 +30,7 @@ namespace Micromania.Console
         {
         }
 
-        public Game(string title, double price)
+        public Game(string title, decimal price)
         {
             Title = title;
             Price = price;

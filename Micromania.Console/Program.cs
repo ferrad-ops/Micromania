@@ -17,12 +17,16 @@ namespace Micromania.Console
                 {
                     var client = Client.Create("Ferrad", "Rosé");
                     var client1 = Client.Create("Mael", "LaRochelle");
-                    var client2 = Client.Create("Armel", "Taty");
+                    var client2 = Client.Create("Précieux", "Rajiv");
                     var client3 = Client.Create("Carmel", "Taty");
 
-                    var game = new Game("Uncharted", 15);
-                    var game1 = new Game("Uncharted 2", 20);
-                    var game2 = new Game("Uncharted 4", 59.99);                    
+                    var game = new Game("Uncharted", 15M);
+                    var game1 = new Game("Uncharted 2", 20M);
+                    var game2 = new Game("Uncharted 4", 59M);
+
+                    client.InsertMoney(Money.Ten);
+                    client.InsertMoney(Money.TwentyFive);
+
 
                     client.BuyGame(game);                    
                     client.BuyGame(game);
@@ -34,8 +38,8 @@ namespace Micromania.Console
 
                     //client.BuyGameWithPoints(game);
 
-                    System.Console.WriteLine($"{client.FirstName} has {client.Points} points");
-                    System.Console.WriteLine($"{game2.Title} has {game2.Points} points");
+                    //System.Console.WriteLine($"{client.FirstName} has {client.Points} points");
+                    //System.Console.WriteLine($"{game2.Title} has {game2.Points} points");
 
                     session.SaveOrUpdate(client);
                     session.SaveOrUpdate(client1);
