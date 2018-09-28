@@ -33,7 +33,7 @@ namespace Micromania.Domain
 
         public Game(string title, double price)
         {
-            Title = title;
+            Name = title;
             Price = price;
             Points = (int)Price * 10;
         }

@@ -10,20 +10,22 @@ namespace Micromania.Domain
     {
         public virtual double Cost { get; protected set; }
         public virtual DateTime PurchaseDate { get; protected set; }
+        public virtual string Game { get; protected set; }
 
         public Purchase()
         {
         }
 
-        public Purchase(double cost)
+        public Purchase(Game game)
         {
-            Cost = cost;
+            Cost = game.Price;
             PurchaseDate = DateTime.Now;
+            Game = game.Name;
         }
 
-        public static Purchase Create(double cost)
+        public static Purchase Create(Game game)
         {
-            return new Purchase(cost);
+            return new Purchase(game);
         }        
     }
 }

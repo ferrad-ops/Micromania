@@ -15,16 +15,14 @@ namespace Micromania.Console
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    var client = Client.Create("Ferrad", "Rosé", Card.Create(CardType.Classic));
-                    var client1 = Client.Create("Mael", "LaRochelle", Card.Create(CardType.Classic));
-                    var client2 = Client.Create("Armel", "Taty", Card.Create(CardType.Classic));
-                    var client3 = Client.Create("Carmel", "Taty", Card.Create(CardType.Classic));
+                    var client = Client.Create("Ferrad", "Rosé");
+                    var client1 = Client.Create("Mael", "LaRochelle");
+                    var client2 = Client.Create("Armel", "Taty");
+                    var client3 = Client.Create("Carmel", "Taty");
 
                     var game = new Game("Uncharted", 15);
                     var game1 = new Game("Uncharted 2", 20);
-                    var game2 = new Game("Uncharted 4", 59.99);
-
-                    client.NewLevelReached += Client_NewLevelReached;
+                    var game2 = new Game("Uncharted 4", 59.99);                    
 
                     client.BuyGame(game);                    
                     client.BuyGame(game);
@@ -36,7 +34,7 @@ namespace Micromania.Console
 
                     //client.BuyGameWithPoints(game);
 
-                    System.Console.WriteLine($"{client.FirstName} has {client.Card.Points} points");
+                    System.Console.WriteLine($"{client.FirstName} has {client.Points} points");
                     System.Console.WriteLine($"{game2.Title} has {game2.Points} points");
 
                     session.SaveOrUpdate(client);
@@ -51,13 +49,6 @@ namespace Micromania.Console
                     transaction.Commit();
                 }
             }
-        }
-
-        
-
-        protected static void Client_NewLevelReached(object sender, EventArgs e)
-        {
-            System.Console.WriteLine($"You reached level {CardType.Premium}");
-        }        
+        }      
     }
 }

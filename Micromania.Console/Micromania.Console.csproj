@@ -63,11 +63,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Card.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Mappings\CardMap.cs" />
     <Compile Include="Mappings\ClientMap.cs" />
     <Compile Include="Mappings\GameMap.cs" />
     <Compile Include="Mappings\PurchaseMap.cs" />

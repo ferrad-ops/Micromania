@@ -10,11 +10,11 @@ namespace Micromania.Domain
     public class Client : AggregateRoot
     {
         public virtual string FirstName { get; protected set; }
-        public virtual string LastName { get; protected set; }
-        public virtual Card Card { get; protected set; }
+        public virtual string LastName { get; protected set; }        
         public virtual int Points { get; protected set; }
-        public virtual CardType CardType { get; protected set; }
+        public virtual Status Status { get; protected set; }
         public virtual IList<Purchase> Purchases { get; protected set; } = new List<Purchase>();
+
         private int pointsToDiscount;
 
         public virtual int PointsToDiscount
@@ -33,37 +33,37 @@ namespace Micromania.Domain
         {
         }
 
-        private Client(string firstName, string lastName, Card card)
+        private Client(string firstName, string lastName)
             : this()
         {
             FirstName = firstName;
             LastName = lastName;
-            Card = card;
-            CardType = Card.CardType;
+            Status = Status.IsMegaCard;            
         }
 
-        public static Client Create(string firstName, string lastName, Card card)
+        public static Client Create(string firstName, string lastName)
         {
-            return new Client(firstName, lastName, card);
+            return new Client(firstName, lastName);
         }
 
         public virtual void BuyGame(Game game)
         {
-            var purchase = Purchase.Create(game.Price);
+            var purchase = Purchase.Create(game);
 
             //Buying a game increases the number of points on your card
-            Card.AddGamePoints(game);
-
-            Points = Card.Points;
+            Points += game.Points;
 
             PointsToDiscount = 2000 - Points;
 
             Purchases.Add(purchase);
-        }
+        }        
+    }
 
-        public virtual void BuyGameWithPoints(Game game)
-        {
-            Card.UseCardPoints();
-        }
+    public enum Status
+    {
+        IsMegaCard,
+        IsClassic,
+        IsStar,
+        IsPremium
     }
 }

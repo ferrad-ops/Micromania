@@ -62,13 +62,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregates\AggregateRoot.cs" />
-    <Compile Include="Card.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="ClientDto.cs" />
     <Compile Include="ClientRepository.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Mappings\CardMap.cs" />
     <Compile Include="Mappings\ClientMap.cs" />
     <Compile Include="Mappings\GameMap.cs" />
     <Compile Include="Mappings\PurchaseMap.cs" />

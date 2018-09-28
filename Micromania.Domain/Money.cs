@@ -8,6 +8,6 @@ namespace Micromania.Domain
 {
     public class Money
     {
-
+        
     }
 }
