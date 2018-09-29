@@ -60,6 +60,8 @@ namespace Micromania.Console
 
         public virtual void BuyGame(Game game)
         {
+            if (game.Price > MoneyInWallet)
+                throw new InvalidOperationException(nameof(FirstName));
 
             var purchase = Purchase.Create(game);
 
@@ -67,7 +69,9 @@ namespace Micromania.Console
             Points += game.Points;
 
             PointsToDiscount = 2000 - Points;
-            
+
+            MoneyInWallet -= game.Price;
+
             Purchases.Add(purchase);
         }
     }

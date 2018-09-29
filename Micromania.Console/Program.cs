@@ -25,7 +25,10 @@ namespace Micromania.Console
                     var game2 = new Game("Uncharted 4", 59M);
 
                     client.InsertMoney(Money.Ten);
-                    client.InsertMoney(Money.TwentyFive);
+                    client.InsertMoney(Money.Hundred);
+                    //client1.InsertMoney(Money.Hundred);
+                    //client2.InsertMoney(Money.Hundred);
+                    //client3.InsertMoney(Money.Hundred);
 
 
                     client.BuyGame(game);                    

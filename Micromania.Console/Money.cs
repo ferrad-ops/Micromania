@@ -62,6 +62,17 @@ namespace Micromania.Console
                 money1.OneHundredEuros - money2.OneHundredEuros);
         }
 
+        public static Money operator *(Money money1, int multiplier)
+        {
+            Money result = new Money(
+                money1.TenEuros * multiplier,
+                money1.TwentyFiveEuros * multiplier,
+                money1.FiftyEuros * multiplier,
+                money1.OneHundredEuros * multiplier);
+
+            return result;
+        }
+
         protected override bool EqualsCore(Money other)
         {
             throw new NotImplementedException();

@@ -8,7 +8,7 @@ namespace Micromania.Domain
 {
     public class Purchase : Entity
     {
-        public virtual double Cost { get; protected set; }
+        public virtual decimal Cost { get; protected set; }
         public virtual DateTime PurchaseDate { get; protected set; }
         public virtual string Game { get; protected set; }
 
