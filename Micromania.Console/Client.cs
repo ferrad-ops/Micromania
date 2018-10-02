@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Micromania.Console
 {
-    public class Client : Entity
+    public class Client : AggregateRoot
     {
         public virtual string FirstName { get; protected set; }
         public virtual string LastName { get; protected set; }
         public virtual int Points { get; protected set; }
         public virtual Status Status { get; protected set; }
         public virtual IList<Purchase> Purchases { get; protected set; } = new List<Purchase>();
-        public virtual decimal BonDachat { get; protected set; }
         public virtual decimal MoneyInWallet { get; protected set; }
 
         private int pointsToDiscount;
@@ -62,12 +61,14 @@ namespace Micromania.Console
         public virtual void BuyGame(Game game)
         {
             if (game.Price > MoneyInWallet)
-                throw new InvalidOperationException(nameof(FirstName));
+                throw new InvalidOperationException($"You don't have enough money");
 
             var purchase = Purchase.Create(game);
 
             //Buying a game increases the number of points on your card
             Points += game.Points;
+
+            UpgradeToClassic();
 
             PointsToDiscount = 2000 - Points;
 
@@ -76,11 +77,16 @@ namespace Micromania.Console
             Purchases.Add(purchase);
         }
 
-        public virtual void Discount()
+        public virtual void UpgradeToClassic()
         {
-            if (Points == 8000)
-                BonDachat += 10;
+            if (Points == 720 || Points > 720)
+
+            Status = Status.IsClassic;    
+
+            DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         } 
+
+
     }
 
     public enum Status

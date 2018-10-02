@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 namespace Micromania.Console
 {
     public class ClientStatusChanged : IDomainEvent
-    {
+    {        
         public ClientStatusChanged()
         {
+            
         }
 
-        public ClientStatusChanged(Client client) : this()
-        {           
-        }
-
-        public Client Client { get; }
+        public Client Client { get; set; }
     }
 }

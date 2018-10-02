@@ -26,12 +26,21 @@ namespace Micromania.Console
 
                     client.AddMoney(Money.Ten);
                     client.AddMoney(Money.Hundred);
+                    client.AddMoney(Money.Hundred);
+                    client.AddMoney(Money.Hundred);
+                    client.AddMoney(Money.Hundred);
+                    client.AddMoney(Money.Hundred);
                     client1.AddMoney(Money.Hundred);
                     client2.AddMoney(Money.Hundred);
                     client3.AddMoney(Money.Hundred);
 
 
                     client.BuyGame(game);                    
+                    client.BuyGame(game);
+                    client.BuyGame(game);
+                    client.BuyGame(game);
+                    client.BuyGame(game);
+                    client.BuyGame(game);
                     client.BuyGame(game);
                     client.BuyGame(game);
                     client.BuyGame(game);
@@ -54,6 +63,13 @@ namespace Micromania.Console
                     session.SaveOrUpdate(game2);
                     
                     transaction.Commit();
+
+                    //var repository = new ClientRepository();
+                    //repository.Save(client);
+                    //repository.Save(client1);
+                    //repository.Save(client2);
+                    //repository.Save(client3);
+
                 }
             }
         }      
