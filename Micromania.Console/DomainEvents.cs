@@ -4,41 +4,52 @@ using StructureMap;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Micromania.Console
 {
     public static class DomainEvents
     {
-        [ThreadStatic] //so that each thread has its own callbacks
-        private static List<Delegate> actions;
+        private static Dictionary<Type, List<Delegate>> _dynamicHandlers;
+        private static List<Type> _staticHandlers;
 
-        public static IContainer Container { get; set; } //as before
+        public static void Init()
+        {
+            _dynamicHandlers = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(x => typeof(IDomainEvent).IsAssignableFrom(x) && !x.IsInterface)
+                .ToList()
+                .ToDictionary(x => x, x => new List<Delegate>());
 
-        //Registers a callback for the given domain event
-        public static void Register<T>(Action<T> callback) where T : IDomainEvent
-        {
-            if (actions == null)
-            actions = new List<Delegate>();             
-            actions.Add(callback);
+            _staticHandlers = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .Where(x => x.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == typeof(IHandler<>)))
+                .ToList();
         }
-    
-       //Clears callbacks passed to Register on the current thread
-        public static void ClearCallbacks()
+
+        public static void Register<T>(Action<T> eventHandler)
+            where T : IDomainEvent
         {
-           actions = null;
+            _dynamicHandlers[typeof(T)].Add(eventHandler);
         }
-    
-      //Raises the given domain event
-        public static void Raise<T>(T args) where T : IDomainEvent
+
+        public static void Raise<T>(T domainEvent)
+            where T : IDomainEvent
         {
-            if (Container != null)
-            foreach (var handler in Container.GetAllInstances<IHandler<T>>())
-            handler.Handle(args);
-          
-            if (actions != null)
-            foreach (var action in actions)
-            if (action is Action<T>)
-            ((Action<T>)action)(args);
+            foreach (Delegate handler in _dynamicHandlers[domainEvent.GetType()])
+            {
+                var action = (Action<T>)handler;
+                action(domainEvent);
+            }
+
+            foreach (Type handler in _staticHandlers)
+            {
+                if (typeof(IHandler<T>).IsAssignableFrom(handler))
+                {
+                    IHandler<T> instance = (IHandler<T>)Activator.CreateInstance(handler);
+                    instance.Handle(domainEvent);
+                }
+            }
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Micromania.Console
     {
         static void Main(string[] args)
         {
+            Boostrapper.Initialize();
+
             using (var session = NHibernateHelper.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
@@ -48,11 +50,6 @@ namespace Micromania.Console
                     client2.BuyGame(game2);
                     client3.BuyGame(game1);
 
-                    //client.BuyGameWithPoints(game);
-
-                    //System.Console.WriteLine($"{client.FirstName} has {client.Points} points");
-                    //System.Console.WriteLine($"{game2.Title} has {game2.Points} points");
-
                     session.SaveOrUpdate(client);
                     session.SaveOrUpdate(client1);
                     session.SaveOrUpdate(client2);
@@ -63,13 +60,6 @@ namespace Micromania.Console
                     session.SaveOrUpdate(game2);
                     
                     transaction.Commit();
-
-                    //var repository = new ClientRepository();
-                    //repository.Save(client);
-                    //repository.Save(client1);
-                    //repository.Save(client2);
-                    //repository.Save(client3);
-
                 }
             }
         }      

@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JaySmith.DomainEvents.StructureMap;
 
 namespace Micromania.Console
 {
-    public class ClientStatusChanged : IDomainEvent
-    {        
-        public ClientStatusChanged()
-        {            
+    public static class Boostrapper 
+    {
+        public static void Initialize()
+        {
+            DomainEvents.Init();
         }
 
-        public Client Client { get; set; }
     }
 }

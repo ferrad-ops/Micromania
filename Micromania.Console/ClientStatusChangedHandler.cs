@@ -15,10 +15,8 @@ namespace Micromania.Console
         }
 
         public void Handle(ClientStatusChanged domainEvent)
-        {
-            domainEvent.Client.UpgradeToClassic();
-
-            System.Console.WriteLine($"Client status is now Classic");       
+        {           
+            System.Console.WriteLine($"Client status is now {domainEvent.Client.Status}");       
         }
     }
 }
