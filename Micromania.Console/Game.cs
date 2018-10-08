@@ -8,6 +8,10 @@ namespace Micromania.Console
 {
     public class Game : Entity
     {
+        public static readonly Game Uncharted = new Game("Uncharted", 15M);
+        public static readonly Game Uncharted2 = new Game("Uncharted 2", 20M);
+        public static readonly Game Uncharted4 = new Game("Uncharted 4", 59M);
+
         public virtual string Title { get; protected set; }
 
         private decimal price;

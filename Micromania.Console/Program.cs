@@ -13,54 +13,45 @@ namespace Micromania.Console
         {
             Boostrapper.Initialize();
 
-            using (var session = NHibernateHelper.OpenSession())
-            {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var client = Client.Create("Ferrad", "Rosé");
-                    var client1 = Client.Create("Mael", "LaRochelle");
-                    var client2 = Client.Create("Précieux", "Rajiv");
-                    var client3 = Client.Create("Carmel", "Taty");
+            SessionFactory.Init("Server=DESKTOP-H9JQ47G;Database= Micromania;Trusted_Connection=True;");
 
-                    var game = new Game("Uncharted", 15M);
-                    var game1 = new Game("Uncharted 2", 20M);
-                    var game2 = new Game("Uncharted 4", 59M);
+            var repository = new ClientRepository();
 
-                    client.AddMoney(Money.Ten);
-                    client.AddMoney(Money.Hundred);
-                    client.AddMoney(Money.Hundred);
-                    client.AddMoney(Money.Hundred);
-                    client.AddMoney(Money.Hundred);
-                    client.AddMoney(Money.Hundred);
-                    client1.AddMoney(Money.Hundred);
-                    client2.AddMoney(Money.Hundred);
-                    client3.AddMoney(Money.Hundred);
+            //Client client = repository.GetById(1);
 
-                    client.BuyGame(game);                    
-                    client.BuyGame(game);
-                    client.BuyGame(game);
-                    client.BuyGame(game);
-                    client.BuyGame(game);
-                    client.BuyGame(game);
-                    client.BuyGame(game);
-                    client.BuyGame(game);
-                    client.BuyGame(game);
-                    client1.BuyGame(game1);
-                    client2.BuyGame(game2);
-                    client3.BuyGame(game1);
+            var client = Client.Create("Ferrad", "Rosé");
+            var client1 = Client.Create("Mael", "LaRochelle");
+            var client2 = Client.Create("Précieux", "Rajiv");
+            var client3 = Client.Create("Carmel", "Taty");
 
-                    session.SaveOrUpdate(client);
-                    session.SaveOrUpdate(client1);
-                    session.SaveOrUpdate(client2);
-                    session.SaveOrUpdate(client3);
+            client.AddMoney(Money.Ten);
+            client.AddMoney(Money.Hundred);
+            client.AddMoney(Money.Hundred);
+            client.AddMoney(Money.Hundred);
+            client.AddMoney(Money.Hundred);
+            client.AddMoney(Money.Hundred);
+            client1.AddMoney(Money.Hundred);
+            client2.AddMoney(Money.Hundred);
+            client3.AddMoney(Money.Hundred);
 
-                    session.SaveOrUpdate(game);
-                    session.SaveOrUpdate(game1);
-                    session.SaveOrUpdate(game2);
-                    
-                    transaction.Commit();
-                }
-            }
+            client.BuyGame(Game.Uncharted);
+            client.BuyGame(Game.Uncharted);
+            client.BuyGame(Game.Uncharted);
+            client.BuyGame(Game.Uncharted);
+            client.BuyGame(Game.Uncharted);
+            client.BuyGame(Game.Uncharted);
+            client.BuyGame(Game.Uncharted);
+            client.BuyGame(Game.Uncharted);
+            
+            client1.BuyGame(Game.Uncharted2);
+            client2.BuyGame(Game.Uncharted4);
+            client3.BuyGame(Game.Uncharted);
+
+            //repository.Save(client);
+            //repository.Save(client1);
+            //repository.Save(client2);
+            //repository.Save(client3);
+
         }      
     }
 }

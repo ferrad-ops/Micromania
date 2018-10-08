@@ -10,10 +10,10 @@ namespace Micromania.Console
     {
         public virtual string FirstName { get; protected set; }
         public virtual string LastName { get; protected set; }
-        public virtual int Points { get; protected set; }
         public virtual Status Status { get; protected set; }
-        public virtual IList<Purchase> Purchases { get; protected set; } = new List<Purchase>();
         public virtual decimal MoneyInWallet { get; protected set; }
+        public virtual IList<Purchase> Purchases { get; protected set; } = new List<Purchase>();
+        public virtual int Points { get; protected set; }
         public virtual int QualifyingPurchases { get; protected set; }
 
         private int pointsToDiscount;
@@ -39,8 +39,7 @@ namespace Micromania.Console
         {
             FirstName = firstName;
             LastName = lastName;
-            Status = Status.IsMegaCard;
-            
+            Status = Status.IsMegaCard;            
         }
 
         public static Client Create(string firstName, string lastName)
@@ -90,8 +89,6 @@ namespace Micromania.Console
 
             DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         } 
-
-
     }
 
     public enum Status

@@ -11,34 +11,30 @@ using System.Threading.Tasks;
 
 namespace Micromania.Console
 {
-    public class NHibernateHelper
+    public class SessionFactory
     {
         private static ISessionFactory _factory;
 
-        private static ISessionFactory Factory
-        {
-            get
-            {
-                if (_factory == null)
-                    CreateSessionFactory();
-
-                return _factory;
-            }
-        }
-
-        public static void CreateSessionFactory()
-        {
-            _factory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2012.ConnectionString("Server=DESKTOP-H9JQ47G;Database= Micromania;Trusted_Connection=True;"))
-                .Mappings(m =>
-                    m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true))
-                .BuildSessionFactory();
-        }
-
         public static ISession OpenSession()
         {
-            return Factory.OpenSession();
+            return _factory.OpenSession();
+        }
+
+        public static void Init(string connectionString)
+        {
+            _factory = BuildSessionFactory(connectionString);
+        }
+
+        public static ISessionFactory BuildSessionFactory(string connectionString)
+        {
+            FluentConfiguration configuration = Fluently.Configure()
+                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(connectionString))
+                .Mappings(m =>
+                    m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true));
+                
+            return configuration.BuildSessionFactory();
+
         }
     }
 }
