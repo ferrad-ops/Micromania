@@ -77,8 +77,6 @@
     </ApplicationDefinition>
     <Compile Include="Data\ClientDataService.cs" />
     <Compile Include="Data\IClientDataService.cs" />
-    <Compile Include="IDomainEvent.cs" />
-    <Compile Include="IHandler.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
@@ -125,10 +123,6 @@
     <ProjectReference Include="..\Micromania.Console\Micromania.Console.csproj">
       <Project>{c351864a-1f1b-43af-a266-c7cb4da88b4d}</Project>
       <Name>Micromania.Console</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Micromania.Domain\Micromania.Domain.csproj">
-      <Project>{555BAD4A-54F2-4DFB-9FB5-D3848360B3F8}</Project>
-      <Name>Micromania.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

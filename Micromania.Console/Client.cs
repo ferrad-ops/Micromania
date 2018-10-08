@@ -14,6 +14,7 @@ namespace Micromania.Console
         public virtual Status Status { get; protected set; }
         public virtual IList<Purchase> Purchases { get; protected set; } = new List<Purchase>();
         public virtual decimal MoneyInWallet { get; protected set; }
+        public virtual int QualifyingPurchases { get; protected set; }
 
         private int pointsToDiscount;
 
@@ -39,6 +40,7 @@ namespace Micromania.Console
             FirstName = firstName;
             LastName = lastName;
             Status = Status.IsMegaCard;
+            
         }
 
         public static Client Create(string firstName, string lastName)
@@ -63,7 +65,10 @@ namespace Micromania.Console
             if (game.Price > MoneyInWallet)
                 throw new InvalidOperationException($"You don't have enough money");
 
-            var purchase = Purchase.Create(game);
+            if (game.Price > 24)
+                QualifyingPurchases++;
+
+            var purchase = Purchase.Create(game);            
 
             //Buying a game increases the number of points on your card
             Points += game.Points;
@@ -79,7 +84,7 @@ namespace Micromania.Console
 
         public virtual void UpgradeToClassic()
         {
-            if (Points == 720 || Points > 720)
+            if (Points == 720 || Points > 720 || QualifyingPurchases > 3)
 
             Status = Status.IsClassic;    
 

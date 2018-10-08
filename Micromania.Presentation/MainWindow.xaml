@@ -5,33 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Micromania.Presentation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding Client}"
-              SelectedItem="{Binding SelectedClient,Mode=TwoWay}"
-              DisplayMemberPath="FirstName"/>
+        Title="MainWindow" Height="450" Width="779">
+    <Grid Margin="0,0,165,0">
+        <ListView HorizontalAlignment="Left" Height="100" Margin="58,232,0,0" VerticalAlignment="Top" Width="223">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListBox HorizontalAlignment="Left" Height="100" Margin="399,44,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBlock HorizontalAlignment="Left" Margin="399,23,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="58,211,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="399,162,0,0" VerticalAlignment="Top" Width="75"/>
 
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Label Content="Firstname" Margin="10 10 10 0"/>
-            <TextBox Grid.Row="1" Text="{Binding SelectedClient.FirstName,
-        Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-
-            <Label Grid.Row="2" Content="Lastname" Margin="10 0"/>
-            <TextBox Grid.Row="3" Text="{Binding SelectedClient.LastName,
-        Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-        </Grid>
     </Grid>
 </Window>

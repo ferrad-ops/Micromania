@@ -12,7 +12,7 @@ namespace Micromania.Console
     {
         public T GetById(long id)
         {
-            using (ISession session = NHibernateHelper.OpenSession())
+            using (ISession session = SessionFactory.OpenSession())
             {
                 return session.Get<T>(id);
             }
@@ -20,7 +20,7 @@ namespace Micromania.Console
 
         public void Save(T aggregateRoot)
         {
-            using (ISession session = NHibernateHelper.OpenSession())
+            using (ISession session = SessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
                 session.SaveOrUpdate(aggregateRoot);

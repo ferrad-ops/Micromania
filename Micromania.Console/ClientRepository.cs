@@ -11,7 +11,7 @@ namespace Micromania.Console
     {
         public IReadOnlyList<ClientDto> GetClientList()
         {
-            using (ISession session = NHibernateHelper.OpenSession())
+            using (ISession session = SessionFactory.OpenSession())
             {
                 return session.Query<Client>()
                     .ToList() // Fetch data into memory
