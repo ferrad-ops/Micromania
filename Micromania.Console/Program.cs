@@ -13,7 +13,7 @@ namespace Micromania.Console
         {
             Boostrapper.Initialize();
 
-            SessionFactory.Init("Server=DESKTOP-H9JQ47G;Database= Micromania;Trusted_Connection=True;");
+            SessionFactory.Init("Server=DESKTOP-H9JQ47G;Database=Micromania;Trusted_Connection=True;");
 
             var repository = new ClientRepository();
 
@@ -47,10 +47,10 @@ namespace Micromania.Console
             client2.BuyGame(Game.Uncharted4);
             client3.BuyGame(Game.Uncharted);
 
-            //repository.Save(client);
-            //repository.Save(client1);
-            //repository.Save(client2);
-            //repository.Save(client3);
+            repository.Save(client);
+            repository.Save(client1);
+            repository.Save(client2);
+            repository.Save(client3);
 
         }      
     }
