@@ -15,9 +15,9 @@
             </ListView.View>
         </ListView>
         <ListBox HorizontalAlignment="Left" Height="100" Margin="399,44,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBlock HorizontalAlignment="Left" Margin="399,23,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="58,211,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="399,162,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock HorizontalAlignment="Left" Margin="399,23,0,0" TextWrapping="Wrap" Text="Games" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="58,211,0,0" TextWrapping="Wrap" Text="Purchases" VerticalAlignment="Top"/>
+        <Button Content="Buy" HorizontalAlignment="Left" Margin="399,162,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

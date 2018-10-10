@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.Console", "Micro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.Tests", "Micromania.Tests\Micromania.Tests.csproj", "{FC190200-6DCA-467F-AC73-D3D7325A977A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.WPF", "Micromania.WPF\Micromania.WPF.csproj", "{9047AF0E-EA69-4731-B679-18515087F009}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FC190200-6DCA-467F-AC73-D3D7325A977A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC190200-6DCA-467F-AC73-D3D7325A977A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC190200-6DCA-467F-AC73-D3D7325A977A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9047AF0E-EA69-4731-B679-18515087F009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9047AF0E-EA69-4731-B679-18515087F009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9047AF0E-EA69-4731-B679-18515087F009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9047AF0E-EA69-4731-B679-18515087F009}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,13 +16,18 @@ namespace Micromania.Console
             SessionFactory.Init("Server=DESKTOP-H9JQ47G;Database=Micromania;Trusted_Connection=True;");
 
             var repository = new ClientRepository();
+            var repository1 = new GameRepository();
 
             //Client client = repository.GetById(1);
 
-            var client = Client.Create("Ferrad", "Rosé");
-            var client1 = Client.Create("Mael", "LaRochelle");
-            var client2 = Client.Create("Précieux", "Rajiv");
-            var client3 = Client.Create("Carmel", "Taty");
+            Client client = Client.Ferrad;
+            Client client1 = Client.Mael;
+            Client client2 = Client.Precieux;
+            Client client3 = Client.Carmel;
+
+            Game game = Game.Uncharted;
+            Game game1 = Game.Uncharted2;
+            Game game2 = Game.Uncharted4;
 
             client.AddMoney(Money.Ten);
             client.AddMoney(Money.Hundred);
@@ -34,24 +39,27 @@ namespace Micromania.Console
             client2.AddMoney(Money.Hundred);
             client3.AddMoney(Money.Hundred);
 
-            client.BuyGame(Game.Uncharted);
-            client.BuyGame(Game.Uncharted);
-            client.BuyGame(Game.Uncharted);
-            client.BuyGame(Game.Uncharted);
-            client.BuyGame(Game.Uncharted);
-            client.BuyGame(Game.Uncharted);
-            client.BuyGame(Game.Uncharted);
-            client.BuyGame(Game.Uncharted);
-            
-            client1.BuyGame(Game.Uncharted2);
-            client2.BuyGame(Game.Uncharted4);
-            client3.BuyGame(Game.Uncharted);
+            client.BuyGame(game);
+            client.BuyGame(game);
+            client.BuyGame(game);
+            client.BuyGame(game);
+            client.BuyGame(game);
+            client.BuyGame(game);
+            client.BuyGame(game);
+            client.BuyGame(game);            
+
+            client1.BuyGame(game1);
+            client2.BuyGame(game2);
+            client3.BuyGame(game);
 
             repository.Save(client);
             repository.Save(client1);
             repository.Save(client2);
             repository.Save(client3);
 
+            repository1.Save(game);
+            repository1.Save(game1);
+            repository1.Save(game2);
         }      
     }
 }

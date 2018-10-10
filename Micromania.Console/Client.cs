@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NHibernate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace Micromania.Console
 {
     public class Client : AggregateRoot
     {
+        public static readonly Client Ferrad = new Client("Ferrad", "Rosé");
+        public static readonly Client Mael = new Client("Mael", "LaRochelle");
+        public static readonly Client Precieux = new Client("Précieux", "Rajiv");
+        public static readonly Client Carmel = new Client("Carmel", "Taty");
+
         public virtual string FirstName { get; protected set; }
         public virtual string LastName { get; protected set; }
         public virtual Status Status { get; protected set; }
@@ -30,11 +36,11 @@ namespace Micromania.Console
             }
         }
 
-        protected Client()
+        public Client()
         {
         }
 
-        private Client(string firstName, string lastName) 
+        public Client(string firstName, string lastName) 
             : this()
         {
             FirstName = firstName;
@@ -42,10 +48,10 @@ namespace Micromania.Console
             Status = Status.IsMegaCard;            
         }
 
-        public static Client Create(string firstName, string lastName)
-        {
-            return new Client(firstName, lastName);
-        }
+        //public static Client Create(string firstName, string lastName)
+        //{
+        //    return new Client(firstName, lastName);
+        //}
 
         public virtual void AddMoney(Money money)
         {
@@ -79,6 +85,7 @@ namespace Micromania.Console
             MoneyInWallet -= game.Price;
 
             Purchases.Add(purchase);
+
         }
 
         public virtual void UpgradeToClassic()

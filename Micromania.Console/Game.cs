@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Micromania.Console
 {
-    public class Game : Entity
+    public class Game : AggregateRoot
     {
         public static readonly Game Uncharted = new Game("Uncharted", 15M);
         public static readonly Game Uncharted2 = new Game("Uncharted 2", 20M);
@@ -30,11 +30,11 @@ namespace Micromania.Console
 
         public virtual int Points { get; protected set; }
 
-        public Game()
+        protected Game()
         {
         }
 
-        public Game(string title, decimal price)
+        protected Game(string title, decimal price) : this()
         {
             Title = title;
             Price = price;
