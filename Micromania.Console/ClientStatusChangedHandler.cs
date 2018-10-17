@@ -16,7 +16,7 @@ namespace Micromania.Console
 
         public void Handle(ClientStatusChanged domainEvent)
         {           
-            System.Console.WriteLine($"Client status is now {domainEvent.Client.Status}");       
+            System.Console.WriteLine($"{domainEvent.Client.FirstName} status is now {domainEvent.Client.Status}");       
         }
     }
 }

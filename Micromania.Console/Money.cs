@@ -75,12 +75,22 @@ namespace Micromania.Console
 
         protected override bool EqualsCore(Money other)
         {
-            throw new NotImplementedException();
-        }
+            return TenEuros == other.TenEuros
+                && TwentyFiveEuros == other.TwentyFiveEuros
+                && FiftyEuros == other.FiftyEuros
+                && OneHundredEuros == other.OneHundredEuros;
+        }       
 
         protected override int GetHashCodeCore()
         {
-            throw new NotImplementedException();
+            unchecked
+            {
+                int hashCode = TenEuros;
+                hashCode = (hashCode * 397) ^ TwentyFiveEuros;
+                hashCode = (hashCode * 397) ^ FiftyEuros;
+                hashCode = (hashCode * 397) ^ OneHundredEuros;                
+                return hashCode;
+            }
         }
     }
 }

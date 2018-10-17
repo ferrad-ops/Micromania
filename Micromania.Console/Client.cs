@@ -30,17 +30,15 @@ namespace Micromania.Console
 
             set
             {
-                if (value < 0 || value > 2000)
-                    throw new InvalidOperationException("Invalid value");
                 pointsToDiscount = value;
             }
         }
 
-        public Client()
+        protected Client()
         {
         }
 
-        public Client(string firstName, string lastName) 
+        protected Client(string firstName, string lastName) 
             : this()
         {
             FirstName = firstName;
@@ -80,22 +78,48 @@ namespace Micromania.Console
 
             UpgradeToClassic();
 
+            //UpgradeToStar();
+
+            //UpgradeToPremium();
+
             PointsToDiscount = 2000 - Points;
 
             MoneyInWallet -= game.Price;
 
             Purchases.Add(purchase);
-
         }
 
         public virtual void UpgradeToClassic()
         {
-            if (Points == 720 || Points > 720 || QualifyingPurchases > 3)
+            if( QualifyingPurchases >= 3 )
 
-            Status = Status.IsClassic;    
+            Status = Status.IsClassic;
+
+            DomainEvents.Raise(new ClientStatusChanged() { Client = this });            
+        }
+
+        public virtual void UpgradeToStar()
+        {
+            if(Status == Status.IsClassic && QualifyingPurchases > 3)  
+                
+                Status = Status.IsStar;           
 
             DomainEvents.Raise(new ClientStatusChanged() { Client = this });
-        } 
+        }
+
+        public virtual void UpgradeToPremium()
+        {
+            Status = Status.IsStar;
+
+            while (true)
+            {
+                if (QualifyingPurchases > 3)
+
+                Status = Status.IsPremium;
+
+                //DomainEvents.Raise(new ClientStatusChanged() { Client = this });
+            }            
+        }
     }
 
     public enum Status

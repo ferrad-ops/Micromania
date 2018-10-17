@@ -17,10 +17,26 @@ namespace Micromania.WPF.ViewModels
         public ShellViewModel()
         {
             var canBuyExecute = this.WhenAny(vm => vm.SelectedGame, model => model.Value != null);
+            var canAddMoneyExecute = this.WhenAny(vm => vm.SelectedMoneyAmount, model => model.Value != null);
 
             Buy = ReactiveCommand.CreateFromTask(OnBuyExecuteAsync, canBuyExecute);
+            AddMoney = ReactiveCommand.CreateFromTask(OnAddMoneyExecuteAsync, canAddMoneyExecute);
 
             Games = new FastObservableCollection<Game>(new[] { Game.Uncharted, Game.Uncharted2, Game.Uncharted4 });
+
+            MoneyAmounts = new FastObservableCollection<MoneyModel>(new[] { new MoneyModel("10 €", Money.Ten), new MoneyModel("25 €", Money.TwentyFive),
+                new MoneyModel("50 €", Money.Fifty), new MoneyModel("100 €", Money.Hundred)});
+
+            _client = Client.Precieux;
+
+        }
+
+        private Task OnAddMoneyExecuteAsync()
+        {
+
+            _client.AddMoney(SelectedMoneyAmount.Value);
+
+            return Task.CompletedTask;
         }
 
         private Task OnBuyExecuteAsync()
@@ -30,8 +46,27 @@ namespace Micromania.WPF.ViewModels
 
         public override string Title => "Micromania";
         public ReactiveCommand Buy { get; }
+        public ReactiveCommand AddMoney { get; }
 
         public FastObservableCollection<Game> Games { get; }
         public Game SelectedGame { get; set; }
+
+        public FastObservableCollection<MoneyModel> MoneyAmounts { get; }
+
+        private readonly Client _client;
+
+        public MoneyModel SelectedMoneyAmount { get; set; }
+    }
+
+    public class MoneyModel
+    {
+        public MoneyModel(string name, Money value)
+        {
+            Name = name;
+            Value = value;
+        }
+
+        public string Name { get; }
+        public Money Value { get; }
     }
 }

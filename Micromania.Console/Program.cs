@@ -39,14 +39,14 @@ namespace Micromania.Console
             client2.AddMoney(Money.Hundred);
             client3.AddMoney(Money.Hundred);
 
-            client.BuyGame(game);
-            client.BuyGame(game);
-            client.BuyGame(game);
-            client.BuyGame(game);
-            client.BuyGame(game);
-            client.BuyGame(game);
-            client.BuyGame(game);
-            client.BuyGame(game);            
+            client.BuyGame(game2);
+            client.BuyGame(game2);
+            client.BuyGame(game2);
+            client.BuyGame(game2);
+            client.BuyGame(game2);
+            client.BuyGame(game2);
+            client.BuyGame(game2);
+            client.BuyGame(game2);            
 
             client1.BuyGame(game1);
             client2.BuyGame(game2);

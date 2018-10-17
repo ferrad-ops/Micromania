@@ -22,9 +22,7 @@ namespace Micromania.Console
 
             set
             {
-                if (value <= 0 || value >= 100)
-                    throw new InvalidOperationException("Invalid price.");
-                    price = value;
+                price = value;
             }
         }
 
