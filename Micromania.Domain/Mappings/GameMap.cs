@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Micromania.Domain.Mappings
 {
-    public class GameMap : ClassMap<Purchase>
+    public class GameMap : ClassMap<Game>
     {
         public GameMap()
         {

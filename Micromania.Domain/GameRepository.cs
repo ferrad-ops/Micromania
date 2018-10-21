@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Micromania.Domain
 {
-    public class GameRepository : Repository<Purchase>
+    public class GameRepository : Repository<Game>
     {
     }
 }

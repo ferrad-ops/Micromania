@@ -16,14 +16,14 @@ namespace Micromania.Domain
         {
         }
 
-        public Purchase(Purchase game)
+        public Purchase(Game game)
         {
             Cost = game.Price;
             PurchaseDate = DateTime.Now;
             Game = game.Name;
         }
 
-        public static Purchase Create(Purchase game)
+        public static Purchase Create(Game game)
         {
             return new Purchase(game);
         }        

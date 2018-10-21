@@ -22,7 +22,7 @@ namespace Micromania.WPF.ViewModels
             Buy = ReactiveCommand.CreateFromTask(OnBuyExecuteAsync, canBuyExecute);
             AddMoney = ReactiveCommand.CreateFromTask(OnAddMoneyExecuteAsync, canAddMoneyExecute);
 
-            Games = new FastObservableCollection<Purchase>(new[] { Purchase.Uncharted, Purchase.Uncharted2, Purchase.Uncharted4 });
+            Games = new FastObservableCollection<Game>(new[] { Game.Uncharted, Game.Uncharted2, Game.Uncharted4 });
 
             MoneyAmounts = new FastObservableCollection<MoneyModel>(new[] { new MoneyModel("10 €", Money.Ten), new MoneyModel("25 €", Money.TwentyFive),
                 new MoneyModel("50 €", Money.Fifty), new MoneyModel("100 €", Money.Hundred)});
@@ -32,7 +32,6 @@ namespace Micromania.WPF.ViewModels
 
         private Task OnAddMoneyExecuteAsync()
         {
-
             _client.AddMoney(SelectedMoneyAmount.Value);
 
             return Task.CompletedTask;
@@ -47,8 +46,8 @@ namespace Micromania.WPF.ViewModels
         public ReactiveCommand Buy { get; }
         public ReactiveCommand AddMoney { get; }
 
-        public FastObservableCollection<Purchase> Games { get; }
-        public Purchase SelectedGame { get; set; }
+        public FastObservableCollection<Game> Games { get; }
+        public Game SelectedGame { get; set; }
 
         public FastObservableCollection<MoneyModel> MoneyAmounts { get; }
 

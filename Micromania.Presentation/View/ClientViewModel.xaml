@@ -13,13 +13,13 @@
                   Width="305">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Price}"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <Button Content="Buy" HorizontalAlignment="Right" 
-                Command="{Binding Buy}"
+                Command="{Binding BuyGameCommand}"
                 Margin="0,0,73,172" VerticalAlignment="Bottom" Width="75"/>
         <ListView HorizontalAlignment="Left" Margin="27,10,0,299" 
                   ItemsSource="{Binding MoneyAmounts}"
@@ -32,12 +32,10 @@
             </ListView.View>
         </ListView>
         <Button Content="Add" 
-                Command="{Binding AddMoney}"
+                Command="{Binding AddMoneyCommand}"
                 HorizontalAlignment="Left" Margin="155,125,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBlock HorizontalAlignment="Left" Margin="27,214,0,0" TextWrapping="Wrap" Text="Money In Wallet  : " VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="27,253,0,0" TextWrapping="Wrap" Text="Points  : " VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="155,217,0,0" TextWrapping="Wrap" Text="{Binding _client.MoneyInWallet}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="155,256,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <Label Content="Money In Wallet  :" HorizontalAlignment="Left" Margin="27,196,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding MoneyInWallet}" HorizontalAlignment="Left" Margin="155,196,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

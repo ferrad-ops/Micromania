@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Micromania.Domain
 {
-    public class Purchase : AggregateRoot
+    public class Game : AggregateRoot
     {
-        public static readonly Purchase Uncharted = new Purchase("Uncharted", 15M);
-        public static readonly Purchase Uncharted2 = new Purchase("Uncharted 2", 20M);
-        public static readonly Purchase Uncharted4 = new Purchase("Uncharted 4", 59M);
+        public static readonly Game Uncharted = new Game("Uncharted", 15M);
+        public static readonly Game Uncharted2 = new Game("Uncharted 2", 20M);
+        public static readonly Game Uncharted4 = new Game("Uncharted 4", 59M);
 
         public virtual string Name { get; protected set; }
 
@@ -29,11 +29,11 @@ namespace Micromania.Domain
 
         public virtual int Points { get; protected set; }
 
-        public Purchase()
+        public Game()
         {
         }
 
-        public Purchase(string title, decimal price)
+        public Game(string title, decimal price)
         {
             Name = title;
             Price = price;

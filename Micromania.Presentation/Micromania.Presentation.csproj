@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
     <Page Include="View\ClientViewModel.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -63,8 +64,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModel\GameViewModel.cs" />
-    <Compile Include="ViewModel\PurchaseViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\ClientViewModel.xaml.cs">
       <DependentUpon>ClientViewModel.xaml</DependentUpon>

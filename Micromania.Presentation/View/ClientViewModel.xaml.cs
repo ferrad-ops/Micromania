@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Micromania.Presentation.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace Micromania.Presentation
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ClientViewModel();           
         }
     }
 }
