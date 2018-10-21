@@ -63,8 +63,7 @@ namespace Micromania.Presentation.ViewModel
 
             _client.BuyGame(game);
             _repository.Save(_client);
-            NotifyClient("Vous venez d'acheter un jeu.");
-            
+            NotifyClient("Vous avez acheté un jeu.");           
         }
 
         private void AddMoney()

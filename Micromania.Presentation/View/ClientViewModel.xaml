@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Micromania.Presentation"
         mc:Ignorable="d"
-        Title="Micromania" Height="450" Width="800">
-    <Grid>
-        <ListView HorizontalAlignment="Right" Margin="0,10,73,197" 
+        Title="Micromania" Height="450" Width="618.326">
+    <Grid Margin="0,0,153,30">
+        <ListView HorizontalAlignment="Right" Margin="0,24,-118,183" 
                   ItemsSource="{Binding Games}"
                   SelectedItem="{Binding SelectedGame}"
                   Width="305">
@@ -20,25 +20,25 @@
         </ListView>
         <Button Content="Buy" HorizontalAlignment="Right" 
                 Command="{Binding BuyGameCommand}"
-                Margin="0,0,73,172" VerticalAlignment="Bottom" Width="75"/>
-        <ListView HorizontalAlignment="Left" Margin="27,10,0,299" 
+                Margin="0,0,-118,158" VerticalAlignment="Bottom" Width="75"/>
+        <ListView HorizontalAlignment="Left" Margin="27,24,0,258" 
                   ItemsSource="{Binding MoneyAmounts}"
                   SelectedItem="{Binding SelectedMoneyAmount}" 
                   Width="203" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Amount" Width="200" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Montant" Width="200" DisplayMemberBinding="{Binding Name}"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <Button Content="Add" 
                 Command="{Binding AddMoneyCommand}"
-                HorizontalAlignment="Left" Margin="155,125,0,0" VerticalAlignment="Top" Width="75"/>
+                HorizontalAlignment="Left" Margin="155,136,0,0" VerticalAlignment="Top" Width="75"/>
         <Label Content="Solde Porte-Monnaie  :" HorizontalAlignment="Left" Margin="27,196,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding MoneyInWallet}" HorizontalAlignment="Left" Margin="155,196,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding Message}" HorizontalAlignment="Left" Margin="414,237,0,0" VerticalAlignment="Top"/>
         <Label Content="Points Micromania  :" HorizontalAlignment="Left" Margin="27,237,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Points}" HorizontalAlignment="Left" Margin="155,237,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Message}" HorizontalAlignment="Left" Margin="270,211,0,0" VerticalAlignment="Top" Height="36" Width="177"/>
 
     </Grid>
 </Window>
