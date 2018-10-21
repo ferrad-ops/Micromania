@@ -24,7 +24,6 @@ namespace Micromania.Presentation.ViewModel
         public MoneyModel SelectedMoneyAmount { get; set; }
         public Game SelectedGame { get; set; }
 
-
         public ClientViewModel()
         {
             _client = Client.Ferrad;
@@ -44,13 +43,14 @@ namespace Micromania.Presentation.ViewModel
         {
             _client.BuyGame(game);
             _repository.Save(_client);
-            //NotifyClient("You have bought a game");
+            OnPropertyChanged("MoneyInWallet");
         }
 
         private void AddMoney()
         {
             _client.AddMoney(SelectedMoneyAmount.Value);
             _repository.Save(_client);
+            OnPropertyChanged("MoneyInWallet");
         }
 
         public class MoneyModel

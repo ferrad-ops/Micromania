@@ -22,17 +22,17 @@ namespace Micromania.Domain
         public virtual int Points { get; protected set; }
         public virtual int QualifyingPurchases { get; protected set; }
 
-        private int pointsToDiscount;
+        //private int pointsToDiscount;
 
-        public virtual int PointsToDiscount
-        {
-            get { return pointsToDiscount; }
+        //public virtual int PointsToDiscount
+        //{
+        //    get { return pointsToDiscount; }
 
-            set
-            {
-                pointsToDiscount = value;
-            }
-        }
+        //    set
+        //    {
+        //        pointsToDiscount = value;
+        //    }
+        //}
 
         protected Client()
         {
@@ -82,7 +82,7 @@ namespace Micromania.Domain
 
             //UpgradeToPremium();
 
-            PointsToDiscount = 2000 - Points;
+            //PointsToDiscount = 2000 - Points;
 
             MoneyInWallet -= game.Price;
 

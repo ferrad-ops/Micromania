@@ -17,7 +17,7 @@ namespace Micromania.Domain.Mappings
             Map(x => x.Status);
             Map(x => x.Points);
             Map(x => x.MoneyInWallet);
-            Map(x => x.PointsToDiscount);
+            //Map(x => x.PointsToDiscount);
             Map(x => x.QualifyingPurchases);
             HasMany(x => x.Purchases).Cascade.All();
         }        
