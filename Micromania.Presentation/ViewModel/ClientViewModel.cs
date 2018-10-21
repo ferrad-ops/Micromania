@@ -26,6 +26,7 @@ namespace Micromania.Presentation.ViewModel
         }
 
         public string MoneyInWallet => _client.MoneyInWallet.ToString();
+        public string Points => _client.Points.ToString();
 
         public Command BuyGameCommand { get; private set; }
         public Command AddMoneyCommand { get; private set; }
@@ -63,20 +64,22 @@ namespace Micromania.Presentation.ViewModel
             _client.BuyGame(game);
             _repository.Save(_client);
             NotifyClient("Vous venez d'acheter un jeu.");
-            //OnPropertyChanged("MoneyInWallet");
+            
         }
 
         private void AddMoney()
         {
             _client.AddMoney(SelectedMoneyAmount.Value);
             _repository.Save(_client);
-            OnPropertyChanged("MoneyInWallet");
+            //OnPropertyChanged("MoneyInWallet");
+            NotifyClient($"Vous avez ajouté {SelectedMoneyAmount.Name.ToString()}");
         }
 
         private void NotifyClient(string message)
         {
             Message = message;
             OnPropertyChanged(nameof(MoneyInWallet));           
+            OnPropertyChanged(nameof(Points));
         }
 
         public class MoneyModel

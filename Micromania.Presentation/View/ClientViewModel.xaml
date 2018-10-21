@@ -34,9 +34,11 @@
         <Button Content="Add" 
                 Command="{Binding AddMoneyCommand}"
                 HorizontalAlignment="Left" Margin="155,125,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Money In Wallet  :" HorizontalAlignment="Left" Margin="27,196,0,0" VerticalAlignment="Top"/>
+        <Label Content="Solde Porte-Monnaie  :" HorizontalAlignment="Left" Margin="27,196,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding MoneyInWallet}" HorizontalAlignment="Left" Margin="155,196,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding Message}" HorizontalAlignment="Left" Margin="524,259,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Message}" HorizontalAlignment="Left" Margin="414,237,0,0" VerticalAlignment="Top"/>
+        <Label Content="Points Micromania  :" HorizontalAlignment="Left" Margin="27,237,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Points}" HorizontalAlignment="Left" Margin="155,237,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
