@@ -63,10 +63,21 @@ namespace Micromania.Domain
             MoneyInWallet += money.Amount;
         }
 
-        public virtual void BuyGame(Game game)
+        public virtual string CanBuyGame(Game game)
         {
             if (game.Price > MoneyInWallet)
-                throw new InvalidOperationException($"You don't have enough money");
+                return "Vous n'avez pas assez d'argent";
+
+                return string.Empty;
+        }
+
+        public virtual void BuyGame(Game game)
+        {
+            if (CanBuyGame(game) != string.Empty)
+                throw new InvalidOperationException();
+
+            if (game.Price > MoneyInWallet)
+                throw new InvalidOperationException();
 
             if (game.Price > 24)
                 QualifyingPurchases++;

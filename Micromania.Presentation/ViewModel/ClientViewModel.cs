@@ -14,6 +14,17 @@ namespace Micromania.Presentation.ViewModel
 
         private readonly ClientRepository _repository;
 
+        private string _message = "";
+        public string Message
+        {
+            get { return _message; }
+            private set
+            {
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string MoneyInWallet => _client.MoneyInWallet.ToString();
 
         public Command BuyGameCommand { get; private set; }
@@ -41,9 +52,18 @@ namespace Micromania.Presentation.ViewModel
 
         private void BuyGame(Game game)
         {
+            string error = _client.CanBuyGame(game);
+
+            if (error != string.Empty)
+            {
+                NotifyClient(error);
+                return;
+            }
+
             _client.BuyGame(game);
             _repository.Save(_client);
-            OnPropertyChanged("MoneyInWallet");
+            NotifyClient("Vous venez d'acheter un jeu.");
+            //OnPropertyChanged("MoneyInWallet");
         }
 
         private void AddMoney()
@@ -51,6 +71,12 @@ namespace Micromania.Presentation.ViewModel
             _client.AddMoney(SelectedMoneyAmount.Value);
             _repository.Save(_client);
             OnPropertyChanged("MoneyInWallet");
+        }
+
+        private void NotifyClient(string message)
+        {
+            Message = message;
+            OnPropertyChanged(nameof(MoneyInWallet));           
         }
 
         public class MoneyModel
