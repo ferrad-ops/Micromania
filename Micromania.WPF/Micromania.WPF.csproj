@@ -213,9 +213,9 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Micromania.Console\Micromania.Console.csproj">
-      <Project>{c351864a-1f1b-43af-a266-c7cb4da88b4d}</Project>
-      <Name>Micromania.Console</Name>
+    <ProjectReference Include="..\Micromania.Domain\Micromania.Domain.csproj">
+      <Project>{555bad4a-54f2-4dfb-9fb5-d3848360b3f8}</Project>
+      <Name>Micromania.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Micromania.Presentation
+namespace Micromania.Console
 {
-    class GameViewModel
+    public class PremiumStatusReached : IDomainEvent
     {
+        public Client Client { get; set; }
     }
 }

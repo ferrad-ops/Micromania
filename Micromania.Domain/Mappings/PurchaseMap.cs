@@ -13,6 +13,7 @@ namespace Micromania.Domain.Mappings
         {
             Id(x => x.Id);
             Map(x => x.Cost);
+            Map(x => x.Game);
             Map(x => x.PurchaseDate);
         }
     }

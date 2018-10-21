@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Catel.Collections;
 using Catel.MVVM;
-using Micromania.Console;
+using Micromania.Domain;
 using ReactiveUI;
 using ReactiveUI.Legacy;
 
@@ -22,13 +22,12 @@ namespace Micromania.WPF.ViewModels
             Buy = ReactiveCommand.CreateFromTask(OnBuyExecuteAsync, canBuyExecute);
             AddMoney = ReactiveCommand.CreateFromTask(OnAddMoneyExecuteAsync, canAddMoneyExecute);
 
-            Games = new FastObservableCollection<Game>(new[] { Game.Uncharted, Game.Uncharted2, Game.Uncharted4 });
+            Games = new FastObservableCollection<Purchase>(new[] { Purchase.Uncharted, Purchase.Uncharted2, Purchase.Uncharted4 });
 
             MoneyAmounts = new FastObservableCollection<MoneyModel>(new[] { new MoneyModel("10 €", Money.Ten), new MoneyModel("25 €", Money.TwentyFive),
                 new MoneyModel("50 €", Money.Fifty), new MoneyModel("100 €", Money.Hundred)});
 
             _client = Client.Precieux;
-
         }
 
         private Task OnAddMoneyExecuteAsync()
@@ -48,8 +47,8 @@ namespace Micromania.WPF.ViewModels
         public ReactiveCommand Buy { get; }
         public ReactiveCommand AddMoney { get; }
 
-        public FastObservableCollection<Game> Games { get; }
-        public Game SelectedGame { get; set; }
+        public FastObservableCollection<Purchase> Games { get; }
+        public Purchase SelectedGame { get; set; }
 
         public FastObservableCollection<MoneyModel> MoneyAmounts { get; }
 

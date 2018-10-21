@@ -14,8 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Micromania.Presentation
-{
-   
+{   
     public partial class MainWindow : Window
     {
         public MainWindow()

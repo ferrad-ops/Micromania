@@ -91,16 +91,24 @@ namespace Micromania.Console
 
         public virtual void UpgradeToClassic()
         {
-            if( QualifyingPurchases >= 3 )
+            if (QualifyingPurchases >= 3)
 
-            Status = Status.IsClassic;
+                Status = Status.IsClassic;
 
-            DomainEvents.Raise(new ClientStatusChanged() { Client = this });            
+            else if (QualifyingPurchases >= 6)
+
+                Status = Status.IsStar;
+
+            else if (QualifyingPurchases >= 9)
+
+                Status = Status.IsPremium;
+
+            DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         }
 
         public virtual void UpgradeToStar()
         {
-            if(Status == Status.IsClassic && QualifyingPurchases > 3)  
+            if(Status is Status.IsClassic && QualifyingPurchases >= 6)  
                 
                 Status = Status.IsStar;           
 
@@ -109,16 +117,11 @@ namespace Micromania.Console
 
         public virtual void UpgradeToPremium()
         {
-            Status = Status.IsStar;
+            if (Status is Status.IsStar && QualifyingPurchases >= 9)
 
-            while (true)
-            {
-                if (QualifyingPurchases > 3)
+            Status = Status.IsPremium;
 
-                Status = Status.IsPremium;
-
-                //DomainEvents.Raise(new ClientStatusChanged() { Client = this });
-            }            
+            DomainEvents.Raise(new ClientStatusChanged() { Client = this });                        
         }
     }
 

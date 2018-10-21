@@ -11,11 +11,11 @@ namespace Micromania.Domain
     {
         public IReadOnlyList<ClientDto> GetClientList()
         {
-            using (ISession session = NHibernateHelper.OpenSession())
+            using (ISession session = SessionFactory.OpenSession())
             {
                 return session.Query<Client>()
                     .ToList() // Fetch data into memory
-                    .Select(x => new ClientDto())
+                    .Select(x => new ClientDto(x.FirstName, x.LastName))
                     .ToList();
             }
         }

@@ -35,6 +35,7 @@ namespace Micromania.Console
             client.AddMoney(Money.Hundred);
             client.AddMoney(Money.Hundred);
             client.AddMoney(Money.Hundred);
+            client.AddMoney(Money.Hundred);
             client1.AddMoney(Money.Hundred);
             client2.AddMoney(Money.Hundred);
             client3.AddMoney(Money.Hundred);
@@ -47,6 +48,8 @@ namespace Micromania.Console
             client.BuyGame(game2);
             client.BuyGame(game2);
             client.BuyGame(game2);            
+            client.BuyGame(game2);            
+            client.BuyGame(game2);
 
             client1.BuyGame(game1);
             client2.BuyGame(game2);

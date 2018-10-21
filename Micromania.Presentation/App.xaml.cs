@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Micromania.Domain;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,10 +9,11 @@ using System.Windows;
 
 namespace Micromania.Presentation
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Initer.Init("Server=DESKTOP-H9JQ47G;Database=Micromania;Trusted_Connection=True;");
+        }
     }
 }

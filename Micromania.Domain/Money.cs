@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Micromania.Domain
 {
@@ -66,14 +62,35 @@ namespace Micromania.Domain
                 money1.OneHundredEuros - money2.OneHundredEuros);
         }
 
+        public static Money operator *(Money money1, int multiplier)
+        {
+            Money result = new Money(
+                money1.TenEuros * multiplier,
+                money1.TwentyFiveEuros * multiplier,
+                money1.FiftyEuros * multiplier,
+                money1.OneHundredEuros * multiplier);
+
+            return result;
+        }
+
         protected override bool EqualsCore(Money other)
         {
-            throw new NotImplementedException();
-        }
+            return TenEuros == other.TenEuros
+                && TwentyFiveEuros == other.TwentyFiveEuros
+                && FiftyEuros == other.FiftyEuros
+                && OneHundredEuros == other.OneHundredEuros;
+        }       
 
         protected override int GetHashCodeCore()
         {
-            throw new NotImplementedException();
+            unchecked
+            {
+                int hashCode = TenEuros;
+                hashCode = (hashCode * 397) ^ TwentyFiveEuros;
+                hashCode = (hashCode * 397) ^ FiftyEuros;
+                hashCode = (hashCode * 397) ^ OneHundredEuros;                
+                return hashCode;
+            }
         }
     }
 }
