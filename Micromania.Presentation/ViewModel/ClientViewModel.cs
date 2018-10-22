@@ -5,41 +5,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReactiveUI;
+using Catel.Collections;
 
 namespace Micromania.Presentation.ViewModel
 {
     public class ClientViewModel : ViewModelBase
-    {
-        private readonly Client _client;
-
-        private readonly ClientRepository _repository;
-
-        private string _message = "";
-        public string Message
-        {
-            get { return _message; }
-            private set
-            {
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string MoneyInWallet => _client.MoneyInWallet.ToString();
-        public string Points => _client.Points.ToString();
-
-        public Command BuyGameCommand { get; private set; }
-        public Command AddMoneyCommand { get; private set; }
-
-        public ObservableCollection<Game> Games { get; }
-        public ObservableCollection<MoneyModel> MoneyAmounts { get; }
-        public MoneyModel SelectedMoneyAmount { get; set; }
-        public Game SelectedGame { get; set; }
-
+    {        
         public ClientViewModel()
         {
-            _client = Client.Ferrad;
-
             _repository = new ClientRepository();
 
             BuyGameCommand = new Command(() => BuyGame(SelectedGame));
@@ -48,7 +22,9 @@ namespace Micromania.Presentation.ViewModel
             Games = new ObservableCollection<Game>(new[] { Game.Uncharted, Game.Uncharted2, Game.Uncharted4 });
 
             MoneyAmounts = new ObservableCollection<MoneyModel>(new[] { new MoneyModel("10 €", Money.Ten), new MoneyModel("25 €", Money.TwentyFive),
-                new MoneyModel("50 €", Money.Fifty), new MoneyModel("100 €", Money.Hundred)});
+                new MoneyModel("50 €", Money.Fifty), new MoneyModel("100 €", Money.Hundred)});         
+                
+            _client = Client.Ferrad;
         }
 
         private void BuyGame(Game game)
@@ -70,7 +46,6 @@ namespace Micromania.Presentation.ViewModel
         {
             _client.AddMoney(SelectedMoneyAmount.Value);
             _repository.Save(_client);
-            //OnPropertyChanged("MoneyInWallet");
             NotifyClient($"Vous avez ajouté {SelectedMoneyAmount.Name.ToString()}");
         }
 
@@ -79,7 +54,36 @@ namespace Micromania.Presentation.ViewModel
             Message = message;
             OnPropertyChanged(nameof(MoneyInWallet));           
             OnPropertyChanged(nameof(Points));
+            OnPropertyChanged(nameof(QualifyingPurchases));
+            OnPropertyChanged(nameof(Status));
         }
+
+        private readonly Client _client;
+
+        private readonly ClientRepository _repository;
+
+        private string _message = "";
+        public string Message
+        {
+            get { return _message; }
+            private set
+            {
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string MoneyInWallet => _client.MoneyInWallet.ToString();
+        public string Points => _client.Points.ToString();
+        public string QualifyingPurchases => _client.QualifyingPurchases.ToString();
+        public string Status => _client.Status.ToString();
+
+        public Command BuyGameCommand { get; private set; }
+        public Command AddMoneyCommand { get; private set; }
+        public ObservableCollection<Game> Games { get; }
+        public ObservableCollection<MoneyModel> MoneyAmounts { get; }
+        public MoneyModel SelectedMoneyAmount { get; set; }
+        public Game SelectedGame { get; set; }
 
         public class MoneyModel
         {

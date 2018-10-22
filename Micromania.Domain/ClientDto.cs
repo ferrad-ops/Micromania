@@ -17,7 +17,7 @@ namespace Micromania.Domain
         {
             FirstName = firstName;
             LastName = lastName;
-            Status = Status.IsMegaCard;
+            Status = Status.MegaCard;
         }
     }
 }

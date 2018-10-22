@@ -43,7 +43,7 @@ namespace Micromania.Domain
         {
             FirstName = firstName;
             LastName = lastName;
-            Status = Status.IsMegaCard;
+            Status = Status.MegaCard;
         }
 
         //public static Client Create(string firstName, string lastName)
@@ -65,6 +65,8 @@ namespace Micromania.Domain
 
         public virtual string CanBuyGame(Game game)
         {
+            if (game == null)
+                return "Veuillez choisir un jeu";
             if (game.Price > MoneyInWallet)
                 return "Vous n'avez pas assez d'argent";
 
@@ -89,9 +91,9 @@ namespace Micromania.Domain
 
             UpgradeToClassic();
 
-            //UpgradeToStar();
+            UpgradeToStar();
 
-            //UpgradeToPremium();
+            UpgradeToPremium();
 
             //PointsToDiscount = 2000 - Points;
 
@@ -104,43 +106,40 @@ namespace Micromania.Domain
         {
             if (QualifyingPurchases >= 3)
 
-                Status = Status.IsClassic;
-
-            else if (QualifyingPurchases >= 6)
-
-                Status = Status.IsStar;
-
-            else if (QualifyingPurchases >= 9)
-
-                Status = Status.IsPremium;
+                Status = Status.Classic;
 
             DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         }
 
         public virtual void UpgradeToStar()
         {
-            if (Status is Status.IsClassic && QualifyingPurchases >= 6)
+            if (Status is Status.Classic && QualifyingPurchases >= 6)
 
-                Status = Status.IsStar;
+                Status = Status.Star;
 
             DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         }
 
         public virtual void UpgradeToPremium()
         {
-            if (Status is Status.IsStar && QualifyingPurchases >= 9)
+            if (Status is Status.Star && QualifyingPurchases >= 9)
 
-                Status = Status.IsPremium;
+                Status = Status.Premium;
 
             DomainEvents.Raise(new ClientStatusChanged() { Client = this });
+        }
+
+        public override string ToString()
+        {
+            return "$" + MoneyInWallet.ToString("0.00");
         }
     }
 
     public enum Status
     {
-        IsMegaCard,
-        IsClassic,
-        IsStar,
-        IsPremium
+        MegaCard,
+        Classic,
+        Star,
+        Premium
     }
 }
