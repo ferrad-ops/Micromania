@@ -40,9 +40,11 @@
         <Label Content="{Binding Points}" HorizontalAlignment="Left" Margin="155,237,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding Message}" HorizontalAlignment="Left" Margin="270,211,0,0" VerticalAlignment="Top" Height="36" Width="177"/>
         <Label Content="Achats Qualifiants : " HorizontalAlignment="Left" Margin="259,287,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding QualifyingPurchases}" HorizontalAlignment="Left" Margin="393,287,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.754,0.407"/>
-        <Label Content="{Binding Status}" HorizontalAlignment="Left" Margin="50,352,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding QualifyingPurchases}" HorizontalAlignment="Left" Margin="378,287,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.754,0.407"/>
+        <Label Content="{Binding Status}" HorizontalAlignment="Left" Margin="45,352,0,0" VerticalAlignment="Top"/>
         <Label Content="Vous Êtes " HorizontalAlignment="Left" Margin="27,326,0,0" VerticalAlignment="Top"/>
+        <Label Content="Bon D'Achat  : " HorizontalAlignment="Left" Margin="270,326,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding GiftVoucher}" HorizontalAlignment="Left" Margin="363,326,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

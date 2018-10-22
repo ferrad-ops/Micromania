@@ -21,6 +21,7 @@ namespace Micromania.Domain
         public virtual IList<Purchase> Purchases { get; protected set; } = new List<Purchase>();
         public virtual int Points { get; protected set; }
         public virtual int QualifyingPurchases { get; protected set; }
+        public virtual decimal GiftVoucher { get; protected set; }
 
         //private int pointsToDiscount;
 
@@ -70,7 +71,7 @@ namespace Micromania.Domain
             if (game.Price > MoneyInWallet)
                 return "Vous n'avez pas assez d'argent";
 
-                return string.Empty;
+            return string.Empty;
         }
 
         public virtual void BuyGame(Game game)
@@ -83,6 +84,9 @@ namespace Micromania.Domain
 
             if (game.Price > 24)
                 QualifyingPurchases++;
+
+            if (Points >= 2000)
+                GiftVoucher += 10;
 
             var purchase = Purchase.Create(game);
 
@@ -129,9 +133,25 @@ namespace Micromania.Domain
             DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         }
 
-        public override string ToString()
+        public virtual string CanBuyGameWithGiftVoucher(Game game)
         {
-            return "$" + MoneyInWallet.ToString("0.00");
+            if (game == null)
+                return "Veuillez choisir un jeu";
+            if (game.Price > GiftVoucher)
+                return "Vous n'avez pas assez d'argent en bon d'achat";
+
+            return string.Empty;
+        }
+
+        public virtual void BuyGameWithGiftVoucher(Game game)
+        {
+            if (CanBuyGameWithGiftVoucher(game) != string.Empty)
+                throw new InvalidOperationException();
+
+            if (game.Price > GiftVoucher)
+                throw new InvalidOperationException();
+
+            var purchase = Purchase.Create(game);
         }
     }
 
