@@ -16,12 +16,12 @@ namespace Micromania.Domain
 
         public virtual string FirstName { get; protected set; }
         public virtual string LastName { get; protected set; }
-        public virtual Status Status { get; protected set; }
+        public virtual decimal GiftVoucher { get; protected set; }
         public virtual decimal MoneyInWallet { get; protected set; }
-        public virtual IList<Purchase> Purchases { get; protected set; } = new List<Purchase>();
+        public virtual Status Status { get; protected set; }
+        public virtual IList<Purchase> Purchases { get; protected set; }
         public virtual int Points { get; protected set; }
         public virtual int QualifyingPurchases { get; protected set; }
-        public virtual decimal GiftVoucher { get; protected set; }
 
         //private int pointsToDiscount;
 
@@ -44,13 +44,14 @@ namespace Micromania.Domain
         {
             FirstName = firstName;
             LastName = lastName;
-            Status = Status.MegaCard;
+            Purchases = new List<Purchase>();
+            Status = Status.MegaCard;            
         }
 
-        //public static Client Create(string firstName, string lastName)
-        //{
-        //    return new Client(firstName, lastName);
-        //}
+        public static Client Create(string firstName, string lastName)
+        {
+            return new Client(firstName, lastName);
+        }
 
         public virtual void AddMoney(Money money)
         {
@@ -84,10 +85,7 @@ namespace Micromania.Domain
 
             if (game.Price > 24)
                 QualifyingPurchases++;
-
-            if (Points >= 2000)
-                GiftVoucher += 10;
-
+            
             var purchase = Purchase.Create(game);
 
             //Buying a game increases the number of points on your card
@@ -99,11 +97,25 @@ namespace Micromania.Domain
 
             UpgradeToPremium();
 
-            //PointsToDiscount = 2000 - Points;
-
             MoneyInWallet -= game.Price;
 
             Purchases.Add(purchase);
+
+            while (Points >= 2000 && Points < 8000)
+            {
+                if (GiftVoucher == 0)
+                    GiftVoucher += 10;
+                if (GiftVoucher == 10)
+                    return;
+            }
+
+            while (Points >= 8000)
+            {
+                if (GiftVoucher == 10)
+                    GiftVoucher += 10;
+                if (GiftVoucher == 20)
+                    return;
+            }            
         }
 
         public virtual void UpgradeToClassic()
@@ -133,25 +145,33 @@ namespace Micromania.Domain
             DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         }
 
-        public virtual string CanBuyGameWithGiftVoucher(Game game)
+        public virtual string CanUseGiftVoucher(Game game)
         {
             if (game == null)
                 return "Veuillez choisir un jeu";
             if (game.Price > GiftVoucher)
-                return "Vous n'avez pas assez d'argent en bon d'achat";
+                return "Pas assez en bon d'achat";
 
             return string.Empty;
         }
 
-        public virtual void BuyGameWithGiftVoucher(Game game)
+        public virtual void UseGiftVoucher(Game game)
         {
-            if (CanBuyGameWithGiftVoucher(game) != string.Empty)
+            if (CanUseGiftVoucher(game) != string.Empty)
                 throw new InvalidOperationException();
 
-            if (game.Price > GiftVoucher)
-                throw new InvalidOperationException();
+            BuyGame(game);
 
             var purchase = Purchase.Create(game);
+
+            GiftVoucher -= game.Price;
+
+            Clear();
+        }
+
+        public virtual void Clear()
+        {
+            Points = 0;
         }
     }
 

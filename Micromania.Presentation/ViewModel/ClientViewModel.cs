@@ -1,30 +1,31 @@
 ﻿using Micromania.Domain;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
+using Catel;
+using Catel.MVVM;
 using Catel.Collections;
 
 namespace Micromania.Presentation.ViewModel
 {
     public class ClientViewModel : ViewModelBase
-    {        
+    {
         public ClientViewModel()
         {
             _repository = new ClientRepository();
 
             BuyGameCommand = new Command(() => BuyGame(SelectedGame));
             AddMoneyCommand = new Command(() => AddMoney());
-            BuyGameWithGVCommand = new Command(() => BuyGameWithGV(SelectedGame));
+            BuyGameWithGVCommand = new Command(() => UseGiftVoucher(SelectedGame));
 
-            Games = new ObservableCollection<Game>(new[] { Game.Uncharted, Game.Uncharted2, Game.Uncharted4 });
+            Games = new ObservableCollection<Game>(new[] { Game.CBC, Game.Uncharted, Game.Uncharted2, Game.Uncharted4, Game.GOW, Game.MGS });
 
-            MoneyAmounts = new ObservableCollection<MoneyModel>(new[] { new MoneyModel("10 €", Money.Ten), new MoneyModel("25 €", Money.TwentyFive),
-                new MoneyModel("50 €", Money.Fifty), new MoneyModel("100 €", Money.Hundred)});         
-                
+            MoneyAmounts = new FastObservableCollection<MoneyModel>(new[] { new MoneyModel("$ 10", Money.Ten), new MoneyModel("$ 25", Money.TwentyFive),
+                new MoneyModel("$ 50", Money.Fifty), new MoneyModel("$ 100", Money.Hundred)});
+
             _client = Client.Ferrad;
         }
 
@@ -43,7 +44,6 @@ namespace Micromania.Presentation.ViewModel
             NotifyClient("Vous avez acheté un jeu.");
         }
 
-
         private void AddMoney()
         {
             _client.AddMoney(SelectedMoneyAmount.Value);
@@ -51,9 +51,9 @@ namespace Micromania.Presentation.ViewModel
             NotifyClient($"Vous avez ajouté {SelectedMoneyAmount.Name.ToString()}");
         }
 
-        private void BuyGameWithGV(Game game)
+        private void UseGiftVoucher(Game game)
         {
-            string error = _client.CanBuyGameWithGiftVoucher(game);
+            string error = _client.CanUseGiftVoucher(game);
 
             if (error != string.Empty)
             {
@@ -61,15 +61,15 @@ namespace Micromania.Presentation.ViewModel
                 return;
             }
 
-            _client.BuyGameWithGiftVoucher(game);
+            _client.UseGiftVoucher(game);
             _repository.Save(_client);
-            NotifyClient("Vous avez acheté un jeu avec bon d'achat.");
+            NotifyClient("Vous avez utilisé un bon d'achat.");
         }
 
         private void NotifyClient(string message)
         {
             Message = message;
-            OnPropertyChanged(nameof(MoneyInWallet));           
+            OnPropertyChanged(nameof(MoneyInWallet));
             OnPropertyChanged(nameof(Points));
             OnPropertyChanged(nameof(QualifyingPurchases));
             OnPropertyChanged(nameof(Status));
@@ -91,17 +91,17 @@ namespace Micromania.Presentation.ViewModel
             }
         }
 
-        public string MoneyInWallet => _client.MoneyInWallet.ToString();
+        public decimal MoneyInWallet => _client.MoneyInWallet;
         public string Points => _client.Points.ToString();
-        public string QualifyingPurchases => _client.QualifyingPurchases.ToString();
+        public int QualifyingPurchases => _client.QualifyingPurchases;
         public string Status => _client.Status.ToString();
-        public string GiftVoucher => _client.GiftVoucher.ToString();
+        public decimal GiftVoucher => _client.GiftVoucher;
 
         public Command BuyGameCommand { get; private set; }
         public Command AddMoneyCommand { get; private set; }
         public Command BuyGameWithGVCommand { get; private set; }
         public ObservableCollection<Game> Games { get; }
-        public ObservableCollection<MoneyModel> MoneyAmounts { get; }
+        public FastObservableCollection<MoneyModel> MoneyAmounts { get; }
         public MoneyModel SelectedMoneyAmount { get; set; }
         public Game SelectedGame { get; set; }
 
