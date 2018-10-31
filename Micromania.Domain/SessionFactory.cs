@@ -30,8 +30,8 @@ namespace Micromania.Domain
             FluentConfiguration configuration = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012.ConnectionString(connectionString))
                 .Mappings(m =>
-                    m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true));
+                    m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()));
+                //.ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true));
                 
             return configuration.BuildSessionFactory();
         }

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +6,7 @@ using System.Threading.Tasks;
 using Micromania.Domain;
 using NHibernate;
 using Xunit;
+
 
 namespace Micromania.Tests
 {
@@ -21,7 +21,7 @@ namespace Micromania.Tests
 
             using (ISession session = SessionFactory.OpenSession())
             {                
-                long id = 1;
+                long id = 2;
                 var client = session.Get<Client>(id);                
             }
 

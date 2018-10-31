@@ -26,7 +26,7 @@ namespace Micromania.Presentation.ViewModel
             MoneyAmounts = new FastObservableCollection<MoneyModel>(new[] { new MoneyModel("$ 10", Money.Ten), new MoneyModel("$ 25", Money.TwentyFive),
                 new MoneyModel("$ 50", Money.Fifty), new MoneyModel("$ 100", Money.Hundred)});
 
-            _client = Client.Ferrad;
+            _client = _repository.GetById(2);
         }
 
         private void BuyGame(Game game)

@@ -19,7 +19,7 @@ namespace Micromania.Domain.Mappings
             Map(x => x.MoneyInWallet);
             Map(x => x.GiftVoucher);
             Map(x => x.QualifyingPurchases);
-            HasMany(x => x.Purchases).Cascade.All();
+            HasMany(x => x.Purchases).Cascade.All().Not.LazyLoad();
         }        
     }
 }
