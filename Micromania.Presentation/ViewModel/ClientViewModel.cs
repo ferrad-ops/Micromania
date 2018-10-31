@@ -19,8 +19,8 @@ namespace Micromania.Presentation.ViewModel
 
             BuyGameCommand = new Command(() => BuyGame(SelectedGame));
             AddMoneyCommand = new Command(() => AddMoney());
-            BuyGameWithGVCommand = new Command(() => UseGiftVoucher(SelectedGame));
-            AddGVToWalletCommand = new Command(() => AddGVToWallet());
+            BuyGameWithBonusCommand = new Command(() => UseBonus(SelectedGame));
+            AddBonusToWalletCommand = new Command(() => AddBonusToWallet());
 
             Games = new ObservableCollection<Game>(new[] { Game.CBC, Game.Uncharted, Game.Uncharted2, Game.Uncharted4, Game.GOW, Game.MGS });
 
@@ -52,9 +52,9 @@ namespace Micromania.Presentation.ViewModel
             NotifyClient($"Vous avez ajouté {SelectedMoneyAmount.Name.ToString()}");
         }
 
-        private void UseGiftVoucher(Game game)
+        private void UseBonus(Game game)
         {
-            string error = _client.CanUseGiftVoucher(game);
+            string error = _client.CanUseBonus(game);
 
             if (error != string.Empty)
             {
@@ -62,14 +62,14 @@ namespace Micromania.Presentation.ViewModel
                 return;
             }
 
-            _client.UseGiftVoucher(game);
+            _client.UseBonus(game);
             _repository.Save(_client);
             NotifyClient("Vous avez utilisé un bon d'achat.");
         }
 
-        private void AddGVToWallet()
+        private void AddBonusToWallet()
         {
-            string error = _client.CanAddGVToWallet();
+            string error = _client.CanAddBonusToWallet();
 
             if (error != string.Empty)
             {
@@ -77,9 +77,9 @@ namespace Micromania.Presentation.ViewModel
                 return;
             }
 
-            _client.AddGVToWallet();
+            _client.AddBonusToWallet();
             _repository.Save(_client);
-            NotifyClient($"Porte-monnaie approvisionné de ${Bonus}.");
+            NotifyClient($"Porte-monnaie approvisionné");
         }
 
         private void NotifyClient(string message)
@@ -115,8 +115,8 @@ namespace Micromania.Presentation.ViewModel
 
         public Command BuyGameCommand { get; private set; }
         public Command AddMoneyCommand { get; private set; }
-        public Command BuyGameWithGVCommand { get; private set; }
-        public Command AddGVToWalletCommand { get; private set; }
+        public Command BuyGameWithBonusCommand { get; private set; }
+        public Command AddBonusToWalletCommand { get; private set; }
         public ObservableCollection<Game> Games { get; }
         public FastObservableCollection<MoneyModel> MoneyAmounts { get; }
         public MoneyModel SelectedMoneyAmount { get; set; }

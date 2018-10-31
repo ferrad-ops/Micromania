@@ -128,22 +128,22 @@ namespace Micromania.Domain
             DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         }
 
-        public virtual string CanAddGVToWallet()
+        public virtual string CanAddBonusToWallet()
         {
             if (Bonus <= 0)
                 return "Vous n'avez pas assez en bon d'achat";
             return string.Empty;
         }
 
-        public virtual void AddGVToWallet()
+        public virtual void AddBonusToWallet()
         {
-            CanAddGVToWallet();
+            CanAddBonusToWallet();
             MoneyInWallet += Bonus;
             Bonus -= Bonus;
             Clear();
         }
 
-        public virtual string CanUseGiftVoucher(Game game)
+        public virtual string CanUseBonus(Game game)
         {
             if (game == null)
                 return "Veuillez choisir un jeu";
@@ -153,9 +153,9 @@ namespace Micromania.Domain
             return string.Empty;
         }
 
-        public virtual void UseGiftVoucher(Game game)
+        public virtual void UseBonus(Game game)
         {
-            if (CanUseGiftVoucher(game) != string.Empty)
+            if (CanUseBonus(game) != string.Empty)
                 throw new InvalidOperationException();
 
             BuyGame(game);
