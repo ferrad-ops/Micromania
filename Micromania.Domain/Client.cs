@@ -9,31 +9,14 @@ namespace Micromania.Domain
 {
     public class Client : AggregateRoot
     {
-        public static readonly Client Ferrad = new Client("Ferrad", "Rosé");
-        public static readonly Client Mael = new Client("Mael", "LaRochelle");
-        public static readonly Client Precieux = new Client("Précieux", "Rajiv");
-        public static readonly Client Carmel = new Client("Carmel", "Taty");
-
         public virtual string FirstName { get; protected set; }
         public virtual string LastName { get; protected set; }
-        public virtual decimal GiftVoucher { get; protected set; }
+        public virtual decimal Bonus { get; protected set; }
         public virtual decimal MoneyInWallet { get; protected set; }
         public virtual Status Status { get; protected set; }
         public virtual IList<Purchase> Purchases { get; protected set; }
         public virtual int Points { get; protected set; }
         public virtual int QualifyingPurchases { get; protected set; }
-
-        //private int pointsToDiscount;
-
-        //public virtual int PointsToDiscount
-        //{
-        //    get { return pointsToDiscount; }
-
-        //    set
-        //    {
-        //        pointsToDiscount = value;
-        //    }
-        //}
 
         protected Client()
         {
@@ -103,17 +86,17 @@ namespace Micromania.Domain
 
             while (Points >= 2000 && Points < 8000)
             {
-                if (GiftVoucher == 0)
-                    GiftVoucher += 10;
-                if (GiftVoucher == 10)
+                if (Bonus == 0)
+                    Bonus += 10;
+                if (Bonus == 10)
                     return;
             }
 
             while (Points >= 8000)
             {
-                if (GiftVoucher == 10)
-                    GiftVoucher += 10;
-                if (GiftVoucher == 20)
+                if (Bonus == 10)
+                    Bonus += 10;
+                if (Bonus == 20)
                     return;
             }            
         }
@@ -145,11 +128,26 @@ namespace Micromania.Domain
             DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         }
 
+        public virtual string CanAddGVToWallet()
+        {
+            if (Bonus <= 0)
+                return "Vous n'avez pas assez en bon d'achat";
+            return string.Empty;
+        }
+
+        public virtual void AddGVToWallet()
+        {
+            CanAddGVToWallet();
+            MoneyInWallet += Bonus;
+            Bonus -= Bonus;
+            Clear();
+        }
+
         public virtual string CanUseGiftVoucher(Game game)
         {
             if (game == null)
                 return "Veuillez choisir un jeu";
-            if (game.Price > GiftVoucher)
+            if (game.Price > Bonus)
                 return "Pas assez en bon d'achat";
 
             return string.Empty;
@@ -164,7 +162,7 @@ namespace Micromania.Domain
 
             var purchase = Purchase.Create(game);
 
-            GiftVoucher -= game.Price;
+            Bonus -= game.Price;
 
             Clear();
         }

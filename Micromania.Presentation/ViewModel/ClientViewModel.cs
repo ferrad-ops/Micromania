@@ -20,13 +20,14 @@ namespace Micromania.Presentation.ViewModel
             BuyGameCommand = new Command(() => BuyGame(SelectedGame));
             AddMoneyCommand = new Command(() => AddMoney());
             BuyGameWithGVCommand = new Command(() => UseGiftVoucher(SelectedGame));
+            AddGVToWalletCommand = new Command(() => AddGVToWallet());
 
             Games = new ObservableCollection<Game>(new[] { Game.CBC, Game.Uncharted, Game.Uncharted2, Game.Uncharted4, Game.GOW, Game.MGS });
 
             MoneyAmounts = new FastObservableCollection<MoneyModel>(new[] { new MoneyModel("$ 10", Money.Ten), new MoneyModel("$ 25", Money.TwentyFive),
                 new MoneyModel("$ 50", Money.Fifty), new MoneyModel("$ 100", Money.Hundred)});
 
-            _client = _repository.GetById(2);
+            _client = _repository.GetById(1);
         }
 
         private void BuyGame(Game game)
@@ -66,6 +67,21 @@ namespace Micromania.Presentation.ViewModel
             NotifyClient("Vous avez utilisé un bon d'achat.");
         }
 
+        private void AddGVToWallet()
+        {
+            string error = _client.CanAddGVToWallet();
+
+            if (error != string.Empty)
+            {
+                NotifyClient(error);
+                return;
+            }
+
+            _client.AddGVToWallet();
+            _repository.Save(_client);
+            NotifyClient($"Porte-monnaie approvisionné de ${Bonus}.");
+        }
+
         private void NotifyClient(string message)
         {
             Message = message;
@@ -73,7 +89,7 @@ namespace Micromania.Presentation.ViewModel
             OnPropertyChanged(nameof(Points));
             OnPropertyChanged(nameof(QualifyingPurchases));
             OnPropertyChanged(nameof(Status));
-            OnPropertyChanged(nameof(GiftVoucher));
+            OnPropertyChanged(nameof(Bonus));
         }
 
         private readonly Client _client;
@@ -95,11 +111,12 @@ namespace Micromania.Presentation.ViewModel
         public string Points => _client.Points.ToString();
         public int QualifyingPurchases => _client.QualifyingPurchases;
         public string Status => _client.Status.ToString();
-        public decimal GiftVoucher => _client.GiftVoucher;
+        public decimal Bonus => _client.Bonus;
 
         public Command BuyGameCommand { get; private set; }
         public Command AddMoneyCommand { get; private set; }
         public Command BuyGameWithGVCommand { get; private set; }
+        public Command AddGVToWalletCommand { get; private set; }
         public ObservableCollection<Game> Games { get; }
         public FastObservableCollection<MoneyModel> MoneyAmounts { get; }
         public MoneyModel SelectedMoneyAmount { get; set; }
