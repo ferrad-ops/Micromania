@@ -45,8 +45,23 @@ namespace Micromania.Presentation.ViewModel
             NotifyClient("Vous avez acheté un jeu.");
         }
 
+        private string CanAddMoney()
+        {
+            if (SelectedMoneyAmount == null)
+                return "Veuillez choisir un montant.";
+            return string.Empty;
+        }
+
         private void AddMoney()
         {
+            string error = CanAddMoney();
+
+            if (error != string.Empty)
+            {
+                NotifyClient(error);
+                return;
+            }
+
             _client.AddMoney(SelectedMoneyAmount.Value);
             _repository.Save(_client);
             NotifyClient($"Vous avez ajouté {SelectedMoneyAmount.Name.ToString()}");
@@ -76,6 +91,7 @@ namespace Micromania.Presentation.ViewModel
                 NotifyClient(error);
                 return;
             }
+
             var amount = Bonus;
             _client.AddBonusToWallet();
             _repository.Save(_client);
