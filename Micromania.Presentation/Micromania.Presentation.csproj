@@ -146,6 +146,9 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
+    <Compile Include="View\Crud.xaml.cs">
+      <DependentUpon>Crud.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\ClientViewModel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -159,6 +162,10 @@
       <DependentUpon>ClientViewModel.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Crud.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

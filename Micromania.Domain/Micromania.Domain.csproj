@@ -79,14 +79,12 @@
     <Compile Include="Aggregates\AggregateRoot.cs" />
     <Compile Include="Boostrapper.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="ClientDto.cs" />
     <Compile Include="ClientRepository.cs" />
     <Compile Include="ClientStatusChanged.cs" />
     <Compile Include="ClientStatusChangedHandler.cs" />
     <Compile Include="DomainEvents.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="GameRepository.cs" />
     <Compile Include="IDomainEvent.cs" />
     <Compile Include="IHandler.cs" />
     <Compile Include="Initer.cs" />

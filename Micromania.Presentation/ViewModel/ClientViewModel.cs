@@ -76,10 +76,10 @@ namespace Micromania.Presentation.ViewModel
                 NotifyClient(error);
                 return;
             }
-
+            var amount = Bonus;
             _client.AddBonusToWallet();
             _repository.Save(_client);
-            NotifyClient($"Porte-monnaie approvisionné");
+            NotifyClient($"Porte-monnaie approvisionné de ${amount}");
         }
 
         private void NotifyClient(string message)

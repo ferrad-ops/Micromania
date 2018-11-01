@@ -1,4 +1,5 @@
-﻿using Micromania.Presentation.ViewModel;
+﻿using Micromania.Presentation.View;
+using Micromania.Presentation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,13 @@ namespace Micromania.Presentation
         {
             InitializeComponent();
             DataContext = new ClientViewModel();           
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var crud = new Crud();
+            crud.Show();
+            this.Close();
         }
     }
 }

@@ -47,6 +47,7 @@
         <Label Content="{Binding Bonus}" ContentStringFormat="{}{0:C}" HorizontalAlignment="Left" Margin="363,326,0,0" VerticalAlignment="Top"/>
         <Button Content="Use It" Command="{Binding BuyGameWithBonusCommand}" HorizontalAlignment="Right" Margin="0,326,-118,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Button" Command="{Binding AddBonusToWalletCommand}" HorizontalAlignment="Right" Margin="0,351,-118,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Open Window" Click="Button_Click" HorizontalAlignment="Left" Margin="27,136,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
