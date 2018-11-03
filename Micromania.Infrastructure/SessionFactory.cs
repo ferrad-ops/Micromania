@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Micromania.Domain
+namespace Micromania.Infrastructure
 {
     public class SessionFactory
     {

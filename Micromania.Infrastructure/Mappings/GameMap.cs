@@ -1,11 +1,12 @@
 ﻿using FluentNHibernate.Mapping;
+using Micromania.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Micromania.Domain.Mappings
+namespace Micromania.Infrastructure.Mappings
 {
     public class GameMap : ClassMap<Game>
     {

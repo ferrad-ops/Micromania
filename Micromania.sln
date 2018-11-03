@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.Domain", "Micromania.Domain\Micromania.Domain.csproj", "{555BAD4A-54F2-4DFB-9FB5-D3848360B3F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.ApplicationServices", "Micromania.ApplicationServices\Micromania.ApplicationServices.csproj", "{B747755D-44B5-4210-8DF6-464819330D8D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.Tests", "Micromania.Tests\Micromania.Tests.csproj", "{FC190200-6DCA-467F-AC73-D3D7325A977A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.WPF", "Micromania.WPF\Micromania.WPF.csproj", "{9047AF0E-EA69-4731-B679-18515087F009}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.Presentation", "Micromania.Presentation\Micromania.Presentation.csproj", "{EF1EC0A3-2B55-4232-BD24-DB5746553541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.Infrastructure", "Micromania.Infrastructure\Micromania.Infrastructure.csproj", "{F61E56E7-85B9-4036-A275-5803B30BBF46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{555BAD4A-54F2-4DFB-9FB5-D3848360B3F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{555BAD4A-54F2-4DFB-9FB5-D3848360B3F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{555BAD4A-54F2-4DFB-9FB5-D3848360B3F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B747755D-44B5-4210-8DF6-464819330D8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B747755D-44B5-4210-8DF6-464819330D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B747755D-44B5-4210-8DF6-464819330D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B747755D-44B5-4210-8DF6-464819330D8D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FC190200-6DCA-467F-AC73-D3D7325A977A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC190200-6DCA-467F-AC73-D3D7325A977A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC190200-6DCA-467F-AC73-D3D7325A977A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{EF1EC0A3-2B55-4232-BD24-DB5746553541}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF1EC0A3-2B55-4232-BD24-DB5746553541}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF1EC0A3-2B55-4232-BD24-DB5746553541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F61E56E7-85B9-4036-A275-5803B30BBF46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F61E56E7-85B9-4036-A275-5803B30BBF46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F61E56E7-85B9-4036-A275-5803B30BBF46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F61E56E7-85B9-4036-A275-5803B30BBF46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

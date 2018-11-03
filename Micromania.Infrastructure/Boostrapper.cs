@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Micromania.Domain;
 
-namespace Micromania.Domain
+namespace Micromania.Infrastructure
 {
     public static class Boostrapper 
     {

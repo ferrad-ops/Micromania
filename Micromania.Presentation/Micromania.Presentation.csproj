@@ -200,6 +200,10 @@
       <Project>{555bad4a-54f2-4dfb-9fb5-d3848360b3f8}</Project>
       <Name>Micromania.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Micromania.Infrastructure\Micromania.Infrastructure.csproj">
+      <Project>{f61e56e7-85b9-4036-a275-5803b30bbf46}</Project>
+      <Name>Micromania.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

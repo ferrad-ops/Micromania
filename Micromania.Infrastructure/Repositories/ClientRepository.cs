@@ -1,11 +1,12 @@
-﻿using NHibernate;
+﻿using Micromania.Domain;
+using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Micromania.Domain
+namespace Micromania.Infrastructure
 {
     public class ClientRepository : Repository<Client>
     {        

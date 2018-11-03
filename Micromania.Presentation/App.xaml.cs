@@ -1,4 +1,5 @@
 ﻿using Micromania.Domain;
+using Micromania.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

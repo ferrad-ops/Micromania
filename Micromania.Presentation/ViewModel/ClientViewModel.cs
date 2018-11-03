@@ -8,6 +8,7 @@ using ReactiveUI;
 using Catel;
 using Catel.MVVM;
 using Catel.Collections;
+using Micromania.Infrastructure;
 
 namespace Micromania.Presentation.ViewModel
 {
@@ -109,7 +110,6 @@ namespace Micromania.Presentation.ViewModel
         }
 
         private readonly Client _client;
-
         private readonly ClientRepository _repository;
 
         private string _message = "";

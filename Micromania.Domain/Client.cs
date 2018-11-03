@@ -106,8 +106,6 @@ namespace Micromania.Domain
             if (QualifyingPurchases >= 3)
 
                 Status = Status.Classic;
-
-            DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         }
 
         public virtual void UpgradeToStar()
@@ -115,8 +113,6 @@ namespace Micromania.Domain
             if (Status is Status.Classic && QualifyingPurchases >= 6)
 
                 Status = Status.Star;
-
-            DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         }
 
         public virtual void UpgradeToPremium()
@@ -124,8 +120,6 @@ namespace Micromania.Domain
             if (Status is Status.Star && QualifyingPurchases >= 9)
 
                 Status = Status.Premium;
-
-            DomainEvents.Raise(new ClientStatusChanged() { Client = this });
         }
 
         public virtual string CanAddBonusToWallet()
