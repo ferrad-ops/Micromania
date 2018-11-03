@@ -90,6 +90,10 @@
       <Project>{555bad4a-54f2-4dfb-9fb5-d3848360b3f8}</Project>
       <Name>Micromania.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Micromania.Infrastructure\Micromania.Infrastructure.csproj">
+      <Project>{F61E56E7-85B9-4036-A275-5803B30BBF46}</Project>
+      <Name>Micromania.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

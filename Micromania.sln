@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.Domain", "Microm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.Tests", "Micromania.Tests\Micromania.Tests.csproj", "{FC190200-6DCA-467F-AC73-D3D7325A977A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.WPF", "Micromania.WPF\Micromania.WPF.csproj", "{9047AF0E-EA69-4731-B679-18515087F009}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.Presentation", "Micromania.Presentation\Micromania.Presentation.csproj", "{EF1EC0A3-2B55-4232-BD24-DB5746553541}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micromania.Infrastructure", "Micromania.Infrastructure\Micromania.Infrastructure.csproj", "{F61E56E7-85B9-4036-A275-5803B30BBF46}"
@@ -27,10 +25,6 @@ Global
 		{FC190200-6DCA-467F-AC73-D3D7325A977A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC190200-6DCA-467F-AC73-D3D7325A977A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC190200-6DCA-467F-AC73-D3D7325A977A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9047AF0E-EA69-4731-B679-18515087F009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9047AF0E-EA69-4731-B679-18515087F009}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9047AF0E-EA69-4731-B679-18515087F009}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9047AF0E-EA69-4731-B679-18515087F009}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF1EC0A3-2B55-4232-BD24-DB5746553541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF1EC0A3-2B55-4232-BD24-DB5746553541}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF1EC0A3-2B55-4232-BD24-DB5746553541}.Release|Any CPU.ActiveCfg = Release|Any CPU

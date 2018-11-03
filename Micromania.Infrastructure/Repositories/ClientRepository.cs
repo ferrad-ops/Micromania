@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 namespace Micromania.Infrastructure
 {
     public class ClientRepository : Repository<Client>
-    {        
+    {
+        public IEnumerable<ServerData> GetServerData()
+        {
+            return serverDataRepository.GetAll();
+        }
+
+
     }
 }

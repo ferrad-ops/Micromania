@@ -13,11 +13,21 @@ namespace Micromania.Infrastructure
     public abstract class Repository<T>
         where T : AggregateRoot
     {
+        public void Create(T aggregateRoot)
+        {
+            using (ISession session = SessionFactory.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                session.Save(aggregateRoot);
+                transaction.Commit();
+            }
+        }
+
         public T GetById(long id)
         {
             using (ISession session = SessionFactory.OpenSession())
             {
-                return session.Get<T>(id);
+                return session.Get<T>(id);               
             }
         }
 
@@ -27,6 +37,20 @@ namespace Micromania.Infrastructure
             using (ITransaction transaction = session.BeginTransaction())
             {
                 session.SaveOrUpdate(aggregateRoot);
+                transaction.Commit();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (ISession session = SessionFactory.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                var client = session.Get<T>(id);
+
+                if (client == null)
+                    throw new ArgumentNullException();
+                session.Delete(client);
                 transaction.Commit();
             }
         }
