@@ -146,6 +146,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
+    <Compile Include="ViewModel\CrudViewModel.cs" />
     <Compile Include="View\Crud.xaml.cs">
       <DependentUpon>Crud.xaml</DependentUpon>
     </Compile>

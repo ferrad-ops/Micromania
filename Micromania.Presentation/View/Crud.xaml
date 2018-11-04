@@ -5,19 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Crud" Height="450" Width="600">
-    <StackPanel>
-        <Button Content="Application" Width="70" Click="Button_Click"/>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Margin=" 10" Width=" 300"/>
-            <Button Grid.Column="2" Content="Create new client" Margin=" 10"/>
-            
-        </Grid>
-    </StackPanel>
+    <Grid>
+        <Button Content="Application" Click="Button_Click" HorizontalAlignment="Left" Margin="251,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Create Client" Click="Button_Click_1" HorizontalAlignment="Left" Margin="458,54,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox Name="lastname" HorizontalAlignment="Left" Height="23" Margin="320,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="firstname" HorizontalAlignment="Left" Height="23" Margin="102,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock Text="First Name" HorizontalAlignment="Left" Margin="30,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock Text="Last Name" HorizontalAlignment="Left" Margin="251,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ListView 
+            HorizontalAlignment="Left" Height="131" Margin="30,233,0,0" VerticalAlignment="Top" Width="223">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  Header="Id" Width="50" DisplayMemberBinding="{Binding }"/>
+                    <GridViewColumn  Header="Name" Width="200" DisplayMemberBinding="{Binding }"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-
+    </Grid>
 </Window>

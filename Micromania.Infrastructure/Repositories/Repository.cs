@@ -13,7 +13,7 @@ namespace Micromania.Infrastructure
     public abstract class Repository<T>
         where T : AggregateRoot
     {
-        public void Create(T aggregateRoot)
+        public void Add(T aggregateRoot)
         {
             using (ISession session = SessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
@@ -50,6 +50,7 @@ namespace Micromania.Infrastructure
 
                 if (client == null)
                     throw new ArgumentNullException();
+
                 session.Delete(client);
                 transaction.Commit();
             }

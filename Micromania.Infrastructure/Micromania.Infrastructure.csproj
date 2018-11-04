@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boostrapper.cs" />
-    <Compile Include="crud.cs" />
     <Compile Include="Mappings\ClientMap.cs" />
     <Compile Include="Mappings\GameMap.cs" />
     <Compile Include="Mappings\PurchaseMap.cs" />
