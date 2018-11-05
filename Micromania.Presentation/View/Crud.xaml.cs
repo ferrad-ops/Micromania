@@ -4,6 +4,7 @@ using Micromania.Presentation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,13 +25,18 @@ namespace Micromania.Presentation.View
     public partial class Crud : Window
     {
         private readonly ClientRepository _clientRepository;
-        private readonly ObservableCollection<Client> Clients;
+        //private ObservableCollection<Client> _items;
+
+        public ObservableCollection<Client> Clients { get;}
+        public Client SelectedClient { get; set; }
 
         public Crud()
         {
             InitializeComponent();
             _clientRepository = new ClientRepository();
             Clients = new ObservableCollection<Client>();
+            //_items = new ObservableCollection<Client>(_clientRepository.GetClientList());
+            DataContext = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,10 +60,41 @@ namespace Micromania.Presentation.View
                 MessageBox.Show($"Le Client '{firstname.Text} {lastname.Text}' a été enregistré avec succès");
 
             Client client = Client.Create(firstName, lastName);
-            
-            _clientRepository.Save(client);
 
             Clients.Add(client);
+            _clientRepository.Save(client);           
+        }
+
+        private void RefreshItems()
+        {
+            var list = _clientRepository.GetAll();
+
+            Clients.Clear();
+
+            // Display all the elements of the list at the given time
+            foreach (var item in list)
+            {
+                Clients.Add(item);
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            RefreshItems();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            if(SelectedClient == null)
+            {
+                MessageBox.Show($"Veuillez choisir un client.");
+                return;
+            }
+
+            MessageBox.Show($"Le client '{SelectedClient.FirstName} {SelectedClient.LastName} ' a bien été supprimé.");
+
+            _clientRepository.Delete(SelectedClient.Id);
+            RefreshItems();
         }
     }
 }

@@ -23,6 +23,15 @@ namespace Micromania.Infrastructure
             }
         }
 
+        public IEnumerable<T> GetAll()
+        {
+            using (ISession session = SessionFactory.OpenSession())
+            {
+                var all = session.CreateCriteria(typeof(T)).List<T>();
+                return all;
+            }
+        }
+
         public T GetById(long id)
         {
             using (ISession session = SessionFactory.OpenSession())
@@ -41,7 +50,7 @@ namespace Micromania.Infrastructure
             }
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             using (ISession session = SessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())

@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="Aggregates\AggregateRoot.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="ClientDto.cs" />
     <Compile Include="ClientStatusChanged.cs" />
     <Compile Include="ClientStatusChangedHandler.cs" />
     <Compile Include="DomainEvents.cs" />
