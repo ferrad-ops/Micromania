@@ -96,5 +96,13 @@ namespace Micromania.Presentation.View
             _clientRepository.Delete(SelectedClient.Id);
             RefreshItems();
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            firstname.Text = SelectedClient.FirstName;
+            lastname.Text = SelectedClient.LastName;
+
+            _clientRepository.Save(SelectedClient);
+        }
     }
 }
