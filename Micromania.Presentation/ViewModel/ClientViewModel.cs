@@ -25,16 +25,16 @@ namespace Micromania.Presentation.ViewModel
             ChooseClientCommand = new Command(() => ChooseClient());
 
             Games = new ObservableCollection<Game>(new[] { Game.CBC, Game.Uncharted, Game.Uncharted2, Game.Uncharted4, Game.GOW, Game.MGS });
+
             Clients = new List<Client>(_repository.GetAll());
+
             MoneyAmounts = new FastObservableCollection<MoneyModel>(new[] { new MoneyModel("$ 10", Money.Ten), new MoneyModel("$ 25", Money.TwentyFive),
                 new MoneyModel("$ 50", Money.Fifty), new MoneyModel("$ 100", Money.Hundred)});
 
-            //_client = _repository.GetById(1);
         }
 
         private void BuyGame(Game game)
         {
-            //string error = _client.CanBuyGame(game);
             string error = SelectedClient.CanBuyGame(game);
 
             if (error != string.Empty)
@@ -43,9 +43,7 @@ namespace Micromania.Presentation.ViewModel
                 return;
             }
 
-            //_client.BuyGame(game);
             SelectedClient.BuyGame(game);
-            //_repository.Save(_client);
             _repository.Save(SelectedClient);
             NotifyClient("Vous avez acheté un jeu.");
         }
@@ -67,16 +65,13 @@ namespace Micromania.Presentation.ViewModel
                 return;
             }
 
-            //_client.AddMoney(SelectedMoneyAmount.Value);
             SelectedClient.AddMoney(SelectedMoneyAmount.Value);
-            //_repository.Save(_client);
             _repository.Save(SelectedClient);
             NotifyClient($"Vous avez ajouté {SelectedMoneyAmount.Name.ToString()}");
         }
 
         private void UseBonus(Game game)
         {
-            //string error = _client.CanUseBonus(game);
             string error = SelectedClient.CanUseBonus(game);
 
             if (error != string.Empty)
@@ -85,9 +80,7 @@ namespace Micromania.Presentation.ViewModel
                 return;
             }
 
-            //_client.UseBonus(game);
             SelectedClient.UseBonus(game);
-            //_repository.Save(_client);
             _repository.Save(SelectedClient);
             NotifyClient("Vous avez utilisé un bon d'achat.");
         }
@@ -104,9 +97,7 @@ namespace Micromania.Presentation.ViewModel
             }
 
             var amount = Bonus;
-            //_client.AddBonusToWallet();
             SelectedClient.AddBonusToWallet();
-            //_repository.Save(_client);
             _repository.Save(SelectedClient);
             NotifyClient($"Porte-monnaie approvisionné de ${amount}");
         }
@@ -127,7 +118,6 @@ namespace Micromania.Presentation.ViewModel
             OnPropertyChanged(nameof(Bonus));
         }
 
-        //private readonly Client _client;
         private readonly ClientRepository _repository;
 
         private string _message = "";
@@ -140,12 +130,6 @@ namespace Micromania.Presentation.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        //public decimal MoneyInWallet => _client.MoneyInWallet;
-        //public string Points => _client.Points.ToString();
-        //public int QualifyingPurchases => _client.QualifyingPurchases;
-        //public string Status => _client.Status.ToString();
-        //public decimal Bonus => _client.Bonus;
 
         public decimal MoneyInWallet => SelectedClient.MoneyInWallet;
         public string Points => SelectedClient.Points.ToString();
