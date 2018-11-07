@@ -9,8 +9,8 @@ namespace Micromania.Domain
 {
     public class Client : AggregateRoot
     {
-        public virtual string FirstName { get; protected set; }
-        public virtual string LastName { get; protected set; }
+        public virtual string FirstName { get;  set; }
+        public virtual string LastName { get;  set; }
         public virtual decimal Bonus { get; protected set; }
         public virtual decimal MoneyInWallet { get; protected set; }
         public virtual Status Status { get; protected set; }

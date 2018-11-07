@@ -21,7 +21,7 @@
         <Button Content="Buy" HorizontalAlignment="Right" 
                 Command="{Binding BuyGameCommand}"
                 Margin="0,0,-118,158" VerticalAlignment="Bottom" Width="75"/>
-        <ListView HorizontalAlignment="Left" Margin="40,24,0,238" 
+        <ListView HorizontalAlignment="Left" Margin="213,24,0,238" 
                   ItemsSource="{Binding MoneyAmounts}"
                   SelectedItem="{Binding SelectedMoneyAmount}" 
                   Width="110" >
@@ -33,7 +33,7 @@
         </ListView>
         <Button Content="Add" 
                 Command="{Binding AddMoneyCommand}"
-                HorizontalAlignment="Left" Margin="75,156,0,0" VerticalAlignment="Top" Width="75"/>
+                HorizontalAlignment="Left" Margin="248,156,0,0" VerticalAlignment="Top" Width="75"/>
         <Label Content="Solde Porte-Monnaie  :" HorizontalAlignment="Left" Margin="27,196,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding MoneyInWallet}" ContentStringFormat="{}{0:C}" HorizontalAlignment="Left" Margin="155,196,0,0" VerticalAlignment="Top"/>
         <Label Content="Points Micromania  :" HorizontalAlignment="Left" Margin="27,237,0,0" VerticalAlignment="Top"/>
@@ -47,7 +47,17 @@
         <Label Content="{Binding Bonus}" ContentStringFormat="{}{0:C}" HorizontalAlignment="Left" Margin="363,326,0,0" VerticalAlignment="Top"/>
         <Button Content="Use It" Command="{Binding BuyGameWithBonusCommand}" HorizontalAlignment="Right" Margin="0,326,-82,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="To Wallet" Command="{Binding AddBonusToWalletCommand}" HorizontalAlignment="Right" Margin="0,351,-82,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Manager" Click="Button_Click" HorizontalAlignment="Left" Margin="201,74,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Manager" Click="Button_Click" HorizontalAlignment="Left" Margin="28,351,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Login" Command="{Binding ChooseClientCommand}" HorizontalAlignment="Left" Margin="69,86,0,0" VerticalAlignment="Top" Width="75"/>
+        <!--<ListView ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" HorizontalAlignment="Left" Height="100" Margin="28,51,0,0" VerticalAlignment="Top" Width="100">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Client" DisplayMemberBinding="{Binding FirstName}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>-->
+        <TextBlock HorizontalAlignment="Left" Margin="28,24,0,0" TextWrapping="Wrap" Text="Vous êtes : " VerticalAlignment="Top"/>
+        <ComboBox x:Name="combobox1" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" DisplayMemberPath="FirstName" HorizontalAlignment="Left" Margin="27,59,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

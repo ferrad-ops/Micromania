@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace Micromania.Infrastructure
 {
     public class ClientRepository : Repository<Client>
-    {
-        
+    {        
     }
 }

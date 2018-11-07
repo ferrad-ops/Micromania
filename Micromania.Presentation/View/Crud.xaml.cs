@@ -25,7 +25,6 @@ namespace Micromania.Presentation.View
     public partial class Crud : Window
     {
         private readonly ClientRepository _clientRepository;
-        //private ObservableCollection<Client> _items;
 
         public ObservableCollection<Client> Clients { get;}
         public Client SelectedClient { get; set; }
@@ -91,7 +90,7 @@ namespace Micromania.Presentation.View
                 return;
             }
 
-            MessageBox.Show($"Le client '{SelectedClient.FirstName} {SelectedClient.LastName} ' a bien été supprimé.");
+            MessageBox.Show($"Le client '{SelectedClient.FirstName} {SelectedClient.LastName}' a bien été supprimé.");
 
             _clientRepository.Delete(SelectedClient.Id);
             RefreshItems();
@@ -99,8 +98,9 @@ namespace Micromania.Presentation.View
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            firstname.Text = SelectedClient.FirstName;
-            lastname.Text = SelectedClient.LastName;
+            SelectedClient.FirstName = firstname.Text;
+            
+            SelectedClient.LastName = lastname.Text;
 
             _clientRepository.Save(SelectedClient);
         }
