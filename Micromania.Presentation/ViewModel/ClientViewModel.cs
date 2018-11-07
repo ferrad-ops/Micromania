@@ -24,13 +24,14 @@ namespace Micromania.Presentation.ViewModel
             AddBonusToWalletCommand = new Command(() => AddBonusToWallet());
             SelectClientCommand = new Command(() => SelectClient());
 
+            Purchases = new ObservableCollection<Purchase>();
+
             Games = new ObservableCollection<Game>(new[] { Game.CBC, Game.Uncharted, Game.Uncharted2, Game.Uncharted4, Game.GOW, Game.MGS });
 
             Clients = new List<Client>(_repository.GetAll());
 
             MoneyAmounts = new FastObservableCollection<MoneyModel>(new[] { new MoneyModel("$ 10", Money.Ten), new MoneyModel("$ 25", Money.TwentyFive),
                 new MoneyModel("$ 50", Money.Fifty), new MoneyModel("$ 100", Money.Hundred)});
-
         }
 
         private void BuyGame(Game game)
@@ -53,6 +54,7 @@ namespace Micromania.Presentation.ViewModel
 
             SelectedClient.BuyGame(game);
             _repository.Save(SelectedClient);
+            RefreshItems();
             NotifyClient($"Vous avez acheté  '{game.Name}'.");
         }
 
@@ -145,6 +147,7 @@ namespace Micromania.Presentation.ViewModel
             }
 
             SelectedClient = _repository.GetById(SelectedClient.Id);
+            RefreshItems();
             NotifyClient($"Bienvenue {SelectedClient.FirstName} ! ");
         }
 
@@ -156,6 +159,20 @@ namespace Micromania.Presentation.ViewModel
             OnPropertyChanged(nameof(QualifyingPurchases));
             OnPropertyChanged(nameof(Status));
             OnPropertyChanged(nameof(Bonus));
+            OnPropertyChanged(nameof(Purchases));
+        }
+
+        private void RefreshItems()
+        {
+            var list = SelectedClient.Purchases;
+
+            Purchases.Clear();
+
+            // Display all the elements of the list at the given time
+            foreach (var item in list)
+            {
+                Purchases.Add(item);
+            }
         }
 
         private readonly ClientRepository _repository;
@@ -188,6 +205,8 @@ namespace Micromania.Presentation.ViewModel
         public Game SelectedGame { get; set; }
         public List<Client> Clients { get; set; }
         public Client SelectedClient { get; set; }
+        public Purchase SelectedPurchase { get; set; }
+        public ObservableCollection<Purchase> Purchases { get; set; }
 
         public class MoneyModel
         {

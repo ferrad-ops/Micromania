@@ -10,5 +10,6 @@ namespace Micromania.Infrastructure
 {
     public class ClientRepository : Repository<Client>
     {        
+
     }
 }

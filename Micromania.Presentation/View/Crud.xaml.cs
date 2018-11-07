@@ -34,7 +34,6 @@ namespace Micromania.Presentation.View
             InitializeComponent();
             _clientRepository = new ClientRepository();
             Clients = new ObservableCollection<Client>();
-            //_items = new ObservableCollection<Client>(_clientRepository.GetClientList());
             DataContext = this;
         }
 

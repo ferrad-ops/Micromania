@@ -21,16 +21,6 @@
         <Button Content="Buy" HorizontalAlignment="Right" 
                 Command="{Binding BuyGameCommand}"
                 Margin="0,0,-118,163" VerticalAlignment="Bottom" Width="75"/>
-        <!--<ListView HorizontalAlignment="Left" Margin="213,24,0,238" 
-                  ItemsSource="{Binding MoneyAmounts}"
-                  SelectedItem="{Binding SelectedMoneyAmount}" 
-                  Width="110" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Montant" Width="100" DisplayMemberBinding="{Binding Name}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>-->
         <Button Content="Add" 
                 Command="{Binding AddMoneyCommand}"
                 HorizontalAlignment="Left" Margin="248,72,0,0" VerticalAlignment="Top" Width="75"/>
@@ -53,6 +43,20 @@
         <ComboBox x:Name="combobox1" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" DisplayMemberPath="FirstName" HorizontalAlignment="Left" Margin="28,45,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox ItemsSource="{Binding MoneyAmounts}" SelectedItem="{Binding SelectedMoneyAmount}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="203,45,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="203,24,0,0" TextWrapping="Wrap" Text="Créditer de :" VerticalAlignment="Top"/>
-
+        <ComboBox ItemsSource="{Binding Purchases}" HorizontalAlignment="Left" Margin="27,136,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock DataContext="{Binding}">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} ({1})">
+                                <Binding Path="Game"/>
+                                <Binding Path="PurchaseDate"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock HorizontalAlignment="Left" Margin="28,115,0,0" TextWrapping="Wrap" Text="Vos achats :" VerticalAlignment="Top"/>
     </Grid>
 </Window>
