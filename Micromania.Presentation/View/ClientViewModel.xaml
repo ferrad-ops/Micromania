@@ -21,7 +21,7 @@
         <Button Content="Buy" HorizontalAlignment="Right" 
                 Command="{Binding BuyGameCommand}"
                 Margin="0,0,-118,163" VerticalAlignment="Bottom" Width="75"/>
-        <ListView HorizontalAlignment="Left" Margin="213,24,0,238" 
+        <!--<ListView HorizontalAlignment="Left" Margin="213,24,0,238" 
                   ItemsSource="{Binding MoneyAmounts}"
                   SelectedItem="{Binding SelectedMoneyAmount}" 
                   Width="110" >
@@ -30,10 +30,10 @@
                     <GridViewColumn Header="Montant" Width="100" DisplayMemberBinding="{Binding Name}"/>
                 </GridView>
             </ListView.View>
-        </ListView>
+        </ListView>-->
         <Button Content="Add" 
                 Command="{Binding AddMoneyCommand}"
-                HorizontalAlignment="Left" Margin="248,156,0,0" VerticalAlignment="Top" Width="75"/>
+                HorizontalAlignment="Left" Margin="248,72,0,0" VerticalAlignment="Top" Width="75"/>
         <Label Content="Solde Porte-Monnaie  :" HorizontalAlignment="Left" Margin="27,196,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding MoneyInWallet}" ContentStringFormat="{}{0:C}" HorizontalAlignment="Left" Margin="155,196,0,0" VerticalAlignment="Top"/>
         <Label Content="Points Micromania  :" HorizontalAlignment="Left" Margin="27,237,0,0" VerticalAlignment="Top"/>
@@ -48,16 +48,11 @@
         <Button Content="Use It" Command="{Binding BuyGameWithBonusCommand}" HorizontalAlignment="Right" Margin="0,326,-82,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="To Wallet" Command="{Binding AddBonusToWalletCommand}" HorizontalAlignment="Right" Margin="0,351,-82,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Manager" Click="Button_Click" HorizontalAlignment="Left" Margin="28,351,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Login" Command="{Binding ChooseClientCommand}" HorizontalAlignment="Left" Margin="73,72,0,0" VerticalAlignment="Top" Width="75"/>
-        <!--<ListView ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" HorizontalAlignment="Left" Height="100" Margin="28,51,0,0" VerticalAlignment="Top" Width="100">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Client" DisplayMemberBinding="{Binding FirstName}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>-->
+        <Button Content="Login" Command="{Binding SelectClientCommand}" HorizontalAlignment="Left" Margin="73,72,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBlock HorizontalAlignment="Left" Margin="28,24,0,0" TextWrapping="Wrap" Text="Vous êtes : " VerticalAlignment="Top"/>
         <ComboBox x:Name="combobox1" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" DisplayMemberPath="FirstName" HorizontalAlignment="Left" Margin="28,45,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox ItemsSource="{Binding MoneyAmounts}" SelectedItem="{Binding SelectedMoneyAmount}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="203,45,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="203,24,0,0" TextWrapping="Wrap" Text="Créditer de :" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

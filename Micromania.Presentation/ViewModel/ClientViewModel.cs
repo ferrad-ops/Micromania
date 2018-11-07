@@ -22,7 +22,7 @@ namespace Micromania.Presentation.ViewModel
             AddMoneyCommand = new Command(() => AddMoney());
             BuyGameWithBonusCommand = new Command(() => UseBonus(SelectedGame));
             AddBonusToWalletCommand = new Command(() => AddBonusToWallet());
-            ChooseClientCommand = new Command(() => ChooseClient());
+            SelectClientCommand = new Command(() => SelectClient());
 
             Games = new ObservableCollection<Game>(new[] { Game.CBC, Game.Uncharted, Game.Uncharted2, Game.Uncharted4, Game.GOW, Game.MGS });
 
@@ -35,7 +35,7 @@ namespace Micromania.Presentation.ViewModel
 
         private void BuyGame(Game game)
         {
-            string error = SelectedClient.CanBuyGame(game);
+            string error = CanSelectClient();
 
             if (error != string.Empty)
             {
@@ -43,15 +43,25 @@ namespace Micromania.Presentation.ViewModel
                 return;
             }
 
+            string error1 = SelectedClient.CanBuyGame(game);
+
+            if (error1 != string.Empty)
+            {
+                NotifyClient(error1);
+                return;
+            }
+
             SelectedClient.BuyGame(game);
             _repository.Save(SelectedClient);
-            NotifyClient("Vous avez acheté un jeu.");
+            NotifyClient($"Vous avez acheté  '{game.Name}'.");
         }
 
         private string CanAddMoney()
         {
             if (SelectedMoneyAmount == null)
                 return "Veuillez choisir un montant.";
+            if (SelectedClient == null)
+                return "Veuillez vous connecter.";
             return string.Empty;
         }
 
@@ -64,7 +74,7 @@ namespace Micromania.Presentation.ViewModel
                 NotifyClient(error);
                 return;
             }
-
+            
             SelectedClient.AddMoney(SelectedMoneyAmount.Value);
             _repository.Save(SelectedClient);
             NotifyClient($"Vous avez ajouté {SelectedMoneyAmount.Name.ToString()}");
@@ -72,11 +82,19 @@ namespace Micromania.Presentation.ViewModel
 
         private void UseBonus(Game game)
         {
-            string error = SelectedClient.CanUseBonus(game);
+            string error = CanSelectClient();
 
             if (error != string.Empty)
             {
                 NotifyClient(error);
+                return;
+            }
+
+            string error1 = SelectedClient.CanUseBonus(game);
+
+            if (error1 != string.Empty)
+            {
+                NotifyClient(error1);
                 return;
             }
 
@@ -87,12 +105,19 @@ namespace Micromania.Presentation.ViewModel
 
         private void AddBonusToWallet()
         {
-            //string error = _client.CanAddBonusToWallet();
-            string error = SelectedClient.CanAddBonusToWallet();
+            string error = CanSelectClient();
 
             if (error != string.Empty)
             {
                 NotifyClient(error);
+                return;
+            }
+
+            string error1 = SelectedClient.CanAddBonusToWallet();
+
+            if (error1 != string.Empty)
+            {
+                NotifyClient(error1);
                 return;
             }
 
@@ -102,8 +127,23 @@ namespace Micromania.Presentation.ViewModel
             NotifyClient($"Porte-monnaie approvisionné de ${amount}");
         }
 
-        private void ChooseClient()
+        private string CanSelectClient()
         {
+            if (SelectedClient == null)
+                return "Veuillez vous identifier.";
+            return string.Empty;
+        }
+
+        private void SelectClient()
+        {
+            string error = CanSelectClient();
+
+            if(error != string.Empty)
+            {
+                NotifyClient(error);
+                return;
+            }
+
             SelectedClient = _repository.GetById(SelectedClient.Id);
             NotifyClient($"Bienvenue {SelectedClient.FirstName} ! ");
         }
@@ -141,7 +181,7 @@ namespace Micromania.Presentation.ViewModel
         public Command AddMoneyCommand { get; private set; }
         public Command BuyGameWithBonusCommand { get; private set; }
         public Command AddBonusToWalletCommand { get; private set; }
-        public Command ChooseClientCommand { get; private set; }
+        public Command SelectClientCommand { get; private set; }
         public ObservableCollection<Game> Games { get; }
         public FastObservableCollection<MoneyModel> MoneyAmounts { get; }
         public MoneyModel SelectedMoneyAmount { get; set; }
