@@ -7,13 +7,13 @@
         Title="Crud" Height="450" Width="600">
     <Grid>
         <Button Content="Application" Click="Button_Click" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Create Client" Click="Button_Click_1" HorizontalAlignment="Left" Margin="458,54,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox Name="lastname" HorizontalAlignment="Left" Height="23" Margin="320,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="firstname" HorizontalAlignment="Left" Height="23" Margin="102,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Create Client"  HorizontalAlignment="Left" Margin="458,54,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox Name="lastname" Text="{Binding SelectedClient.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="320,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="firstname" Text="{Binding SelectedClient.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="102,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock Text="First Name" HorizontalAlignment="Left" Margin="30,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock Text="Last Name" HorizontalAlignment="Left" Margin="251,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <ListView x:Name="ClientView" ItemsSource="{Binding Clients}"
-                  SelectedItem="{Binding SelectedClient}"
+                  SelectedItem="{Binding SelectedClient, Mode=TwoWay}"
             HorizontalAlignment="Left" Height="131" Margin="30,233,0,0" VerticalAlignment="Top" Width="250">
             <ListView.View>
                 <GridView>
@@ -23,9 +23,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Refresh" Click="Button_Click_2" HorizontalAlignment="Left" Margin="303,234,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Delete" Click="Button_Click_3" HorizontalAlignment="Left" Margin="303,271,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Update" HorizontalAlignment="Left" Margin="303,308,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_4"/>
+        <Button Content="Refresh" Command="{Binding LoadCommand}" HorizontalAlignment="Left" Margin="303,234,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Delete" Command="{Binding DeleteCommand}" HorizontalAlignment="Left" Margin="303,271,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Update" Command="{Binding UpDateCommand}" HorizontalAlignment="Left" Margin="303,308,0,0" VerticalAlignment="Top" Width="75" />
         <GroupBox Header="Nos Clients" HorizontalAlignment="Left" Height="184" Margin="10,200,0,0" VerticalAlignment="Top" Width="384"/>
 
     </Grid>

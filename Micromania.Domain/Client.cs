@@ -9,6 +9,8 @@ namespace Micromania.Domain
 {
     public class Client : AggregateRoot
     {
+        public static readonly Client Ferrad = Create("Ferrad", "Makosso");
+
         public virtual string FirstName { get;  set; }
         public virtual string LastName { get;  set; }
         public virtual decimal Bonus { get; protected set; }

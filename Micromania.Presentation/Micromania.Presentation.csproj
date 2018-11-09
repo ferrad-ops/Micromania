@@ -147,6 +147,8 @@
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
     <Compile Include="ViewModel\CrudViewModel.cs" />
+    <Compile Include="ViewModel\IMsgBoxService.cs" />
+    <Compile Include="ViewModel\MsgBoxService.cs" />
     <Compile Include="ViewModel\OfficeViewModel.cs" />
     <Compile Include="View\Crud.xaml.cs">
       <DependentUpon>Crud.xaml</DependentUpon>

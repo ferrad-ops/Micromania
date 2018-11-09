@@ -38,7 +38,7 @@
         <Button Content="Use It" Command="{Binding BuyGameWithBonusCommand}" HorizontalAlignment="Right" Margin="0,326,-82,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="To Wallet" Command="{Binding AddBonusToWalletCommand}" HorizontalAlignment="Right" Margin="0,351,-82,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Manager" Click="Button_Click" HorizontalAlignment="Left" Margin="28,351,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Login" Command="{Binding SelectClientCommand}" HorizontalAlignment="Left" Margin="73,72,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Login" Name="login_btn" Command="{Binding SelectClientCommand}" HorizontalAlignment="Left" Margin="73,72,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBlock HorizontalAlignment="Left" Margin="28,24,0,0" TextWrapping="Wrap" Text="Vous êtes : " VerticalAlignment="Top"/>
         <ComboBox x:Name="combobox1" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" DisplayMemberPath="FirstName" HorizontalAlignment="Left" Margin="28,45,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox ItemsSource="{Binding MoneyAmounts}" SelectedItem="{Binding SelectedMoneyAmount}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="203,45,0,0" VerticalAlignment="Top" Width="120"/>

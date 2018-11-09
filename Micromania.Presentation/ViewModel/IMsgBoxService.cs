@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Micromania.Presentation.ViewModel
+{
+    public interface IMsgBoxService
+    {
+        void ShowNotification(string message);
+        bool AskForConfirmation(string message);
+    }
+}

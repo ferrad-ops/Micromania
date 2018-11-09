@@ -24,6 +24,8 @@ namespace Micromania.Presentation.ViewModel
             AddBonusToWalletCommand = new Command(() => AddBonusToWallet());
             SelectClientCommand = new Command(() => SelectClient());
 
+            SelectedClient = Client.Ferrad;
+
             Purchases = new ObservableCollection<Purchase>();
 
             Games = new ObservableCollection<Game>(new[] { Game.CBC, Game.Uncharted, Game.Uncharted2, Game.Uncharted4, Game.GOW, Game.MGS });
@@ -140,7 +142,7 @@ namespace Micromania.Presentation.ViewModel
         {
             string error = CanSelectClient();
 
-            if(error != string.Empty)
+            if (error != string.Empty)
             {
                 NotifyClient(error);
                 return;
@@ -163,19 +165,20 @@ namespace Micromania.Presentation.ViewModel
         }
 
         private void RefreshItems()
-        {
-            var list = SelectedClient.Purchases;
-
+        {              
             Purchases.Clear();
 
-            // Display all the elements of the list at the given time
-            foreach (var item in list)
+            foreach (var item in SelectedClient.Purchases)
             {
+                if (SelectedClient.Purchases == null)
+                    NotifyClient("Veuillez vous connecter");
+                
                 Purchases.Add(item);
             }
         }
 
         private readonly ClientRepository _repository;
+
 
         private string _message = "";
         public string Message
