@@ -13,14 +13,15 @@ namespace Micromania.Presentation.ViewModel
     {
         private IMsgBoxService messageService;
         private Client _selectedClient;
-        private readonly ClientRepository _clientRepository;
-        
+        private readonly ClientRepository _clientRepository;        
 
         public CrudViewModel(IMsgBoxService msgboxService)
         {
-            this.messageService = msgboxService;
+            messageService = msgboxService;
+
             _clientRepository = new ClientRepository();
-            //CreateCommand = new Command(() => Create());
+
+            CreateCommand = new Command(() => Create());
             LoadCommand = new Command(() => Read());
             UpDateCommand = new Command(() => Update());
             DeleteCommand = new Command(() => Delete());
@@ -28,21 +29,25 @@ namespace Micromania.Presentation.ViewModel
             Clients = new ObservableCollection<Client>();
         }
 
-        private void Create(string firstName, string lastName)
+        private void Create()
         {
-            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
+            SelectedClient = null;
+
+            var client = Client.Create(FirstName, LastName);
+
+            if (string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(LastName))
             {
                 messageService.ShowNotification($"Veuillez entrer un nom et/ou un prénom.");
                 return;
             }
             else
-                messageService.ShowNotification($"Le Client '{firstName} {lastName}' a été enregistré avec succès");
-
-            Client client = Client.Create(firstName, lastName);
+                messageService.ShowNotification($"Le Client '{FirstName} {LastName}' a été enregistré avec succès");
 
             Clients.Add(client);
 
-            _clientRepository.Add(SelectedClient);
+            _clientRepository.Add(client);
+
+            Read();
         }
 
         private void Read()
@@ -78,6 +83,7 @@ namespace Micromania.Presentation.ViewModel
                 return;
             }
 
+            messageService.AskForConfirmation($"Voulez vous supprimer '{SelectedClient.FirstName} {SelectedClient.LastName}' ?");
             messageService.ShowNotification($"Le client '{SelectedClient.FirstName} {SelectedClient.LastName}' a bien été supprimé.");
             _clientRepository.Delete(SelectedClient.Id);
             Read();
@@ -91,13 +97,12 @@ namespace Micromania.Presentation.ViewModel
             }
         }
 
-        //public string FirstName { get; set; }
-        //public string LaststName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public ObservableCollection<Client> Clients { get; set; }
         public Command CreateCommand { get; set; }
         public Command DeleteCommand { get; set; }
         public Command LoadCommand { get; set; }
         public Command UpDateCommand { get; set; }
-
     }
 }

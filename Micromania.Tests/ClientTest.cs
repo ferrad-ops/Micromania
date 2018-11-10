@@ -22,12 +22,10 @@ namespace Micromania.Tests
 
             using (ISession session = SessionFactory.OpenSession())
             {                
-                long id = 2;
+                long id = 1;
                 var client = session.Get<Client>(id);                
             }
-
-
-
+            
             //var repository = new ClientRepository();
             //var repository1 = new GameRepository();
 
